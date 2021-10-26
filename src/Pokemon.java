@@ -7,9 +7,8 @@ public class Pokemon {
     int level;
     String[] moves;
     int accuracy;
-    public void stats(int level, int attackPower, int Hp, int accuracy) {
-
-    }
+//    public void stats(int level, int attackPower, int Hp, int accuracy) {
+//    }
     public void attack(){
         attackPower = level * 15;
         System.out.println("attacked!");
