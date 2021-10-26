@@ -51,10 +51,10 @@ public class move {
     }
 
 
-    public String[] setMoves;{
-        this.move = move;
-    }
-    public String getMoves(String move1, String move2){
-        return this.move1 + this.move2;
-    }
+//    public String[] setMoves;{
+//        this.move = move;
+//    }
+//    public String getMoves(String move1, String move2){
+//        return this.move1 + this.move2;
+//    }
 }
