@@ -2,13 +2,16 @@ public class Main {
     public static void main(String[] args) {
 
         Pokemon pikachu = new Pokemon();
-        pikachu.attack();
-        pikachu.baseHP = 100;
         Pokemon growlithe = new Pokemon();
-        growlithe.attack();
         Pokemon tentacool = new Pokemon();
-        tentacool.pet();
 
+        pikachu.stats(85, 16, 15, 85, pikachu.moves);
+        tentacool.stats(93, 13, 18, 90, tentacool.moves);
+        growlithe.stats(68, 93, 15, 95, growlithe.moves);
+
+        tentacool.pet();
+        growlithe.attack();
+        pikachu.attack();
 
     }
 }

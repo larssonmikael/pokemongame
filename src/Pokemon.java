@@ -1,4 +1,3 @@
-import java.security.PublicKey;
 
 public class Pokemon {
 
@@ -7,8 +6,16 @@ public class Pokemon {
     int level;
     String[] moves;
     int accuracy;
-//    public void stats(int level, int attackPower, int Hp, int accuracy) {
-//    }
+
+    public void stats(int baseHP, int attackPower, int level, int accuracy, String[] moves){
+        this.baseHP = baseHP;
+        this.attackPower = attackPower;
+        this.level = level;
+        this.accuracy = accuracy;
+        this.moves = moves;
+    }
+
+
     public void attack(){
         attackPower = level * 15;
         System.out.println("attacked!");
