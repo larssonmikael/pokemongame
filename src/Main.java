@@ -9,5 +9,6 @@ public class Main {
         Pokemon tentacool = new Pokemon();
         tentacool.pet();
 
+
     }
 }
