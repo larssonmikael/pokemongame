@@ -1,6 +1,8 @@
 public class Map {
 
-    public static String[][] kanto;
+    public static String[] map;
+
+
 
 
 
