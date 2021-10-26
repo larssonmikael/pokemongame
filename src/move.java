@@ -2,8 +2,13 @@ public class move {
     String attackName;
     String type;
     int damage;
-    int defenseNerf;
+    int attackBoost;
     int attackNerf;
+    String move1;
+    String move2;
+    String move;
+
+
 
     public void setAttackName(String attackName){
         this.attackName = attackName;
@@ -14,8 +19,8 @@ public class move {
     public void setDamage(int damage){
         this.damage = damage;
     }
-    public void setDefenseNerf(int defenseNerf){
-        this.defenseNerf = defenseNerf;
+    public void setDefenseNerf(int attackBoost){
+        this.attackBoost = attackBoost;
     }
     public void setAttackNerf(int attackNerf){
         this.attackNerf = attackNerf;
@@ -29,39 +34,27 @@ public class move {
     public int getDamage(int damage){
         return this.damage;
     }
-    public int getDefenseNerf(int defenseNerf){
-        return this.defenseNerf;
+    public int getAttackBoost(int attackBoost){
+        return this.attackBoost;
     }
     public int getAttackNerf(int attackNerf){
         return this.attackNerf;
     }
 
 
-    public move(String attackName, String type, int damage, int defenseNerf, int attackNerf){
+    public move(String attackName, String type, int damage, int attackBoost, int attackNerf){
         this.attackName = attackName;
         this.damage = damage;
-        this.defenseNerf = defenseNerf;
+        this.attackBoost = attackBoost;
         this.attackNerf = attackNerf;
         this.type = type;
     }
 
 
-    public String [] moves;
-    {
-        move tackle = new move("Tackle", "Normal", 10, 0, 0);
-        move leer = new move("Leer", "Normal", 0, 20, 0);
-        move waterGun = new move("Water Gun", "Water", 20, 0, 0);
-        move ember = new move("Ember", "Fire", 20, 0, 0);
-        move growl = new move("Growl", "Normal", 0, 0, 20);
-        move vineWhip = new move("Vine Whip", "Grass", 20, 0, 0);
-
-
-//        public String[] setMoves () {
-//            this.move = move;
-//        }
-//        public static String[] getMoves () {
-//            return moveList;
-//    }
-
+    public String[] setMoves;{
+        this.move = move;
+    }
+    public String getMoves(String move1, String move2){
+        return this.move1 + this.move2;
     }
 }

@@ -10,18 +10,28 @@ public class Main {
         Pokemon charmander = new Pokemon();
         Pokemon squirtle = new Pokemon();
 
-        bulbasaur.stats(83,  17, 13, 90, bulbasaur.moves, "Grass");
-        oddish.stats(85, 16, 15, 85, oddish.moves, "Electric");
-        tentacool.stats(93, 13, 18, 90, tentacool.moves, "Water");
-        growlithe.stats(68, 15, 15, 95, growlithe.moves, "Fire");
-        charmander.stats(74, 18, 14, 90, charmander.moves, "Fire");
-        squirtle.stats(80, 17, 14, 90, squirtle.moves, "Water");
+        move tackle = new move("Tackle", "Normal", 10, 0, 0);
+        move leer = new move("Leer", "Normal", 0, 20, 0);
+        move waterGun = new move("Water Gun", "Water", 20, 0, 0);
+        move ember = new move("Ember", "Fire", 20, 0, 0);
+        move growl = new move("Growl", "Normal", 0, 0, 20);
+        move vineWhip = new move("Vine Whip", "Grass", 20, 0, 0);
+
+        bulbasaur.stats(83, 17, 13, 90, "Grass");
+//        bulbasaur.moves = new move[2];
+
+        oddish.stats(85, 16, 15, 85, "Grass");
+        tentacool.stats(93, 13, 18, 90, "Water");
+        growlithe.stats(68, 15, 15, 95, "Fire");
+        charmander.stats(74, 18, 14, 90, "Fire");
+        squirtle.stats(80, 17, 14, 90, "Water");
 
         tentacool.pet();
-        System.out.println(tentacool.moves);
+//        System.out.println(tentacool.moves);
 //        growlithe.attack();
 //        oddish.attack();
         System.out.println(oddish.speed);
+        System.out.println(bulbasaur);
 
     }
 }

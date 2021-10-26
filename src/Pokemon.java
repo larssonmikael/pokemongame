@@ -4,18 +4,24 @@ public class Pokemon {
     int baseHP;
     int attackPower;
     int speed;
-    String[] moves;
+//    String move1;
+//    String move2;
     int accuracy;
     String type;
 
-    public void stats(int baseHP, int attackPower, int speed, int accuracy, String[] moves, String type){
+//Defense?
+
+    public void stats(int baseHP, int attackPower, int speed, int accuracy, String type){
         this.baseHP = baseHP;
         this.attackPower = attackPower;
         this.speed = speed;
         this.accuracy = accuracy;
-        this.moves = moves;
         this.type = type;
     }
+
+    String[] moves = new String[2];
+
+
 
     public void attack(String ins){
         attackPower = 1;
@@ -23,7 +29,7 @@ public class Pokemon {
     }
     public int pet() {
             baseHP++;
-            System.out.println("You petted the Pokémon. It seems to like you more");
+            System.out.println("You petted the Pokémon. It seems a little healthier.");
 //            System.out.println("You petted the Pokémon. Hmm.. It doesn't seem to care.");
         return baseHP;
     }
