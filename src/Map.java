@@ -1,6 +1,7 @@
 public class Map {
 
-    public static String[][] palletTown;
+    public static String[][] kanto;
+
 
 
 
