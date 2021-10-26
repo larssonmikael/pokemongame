@@ -16,22 +16,27 @@ public class Main {
         move ember = new move("Ember", "Fire", 20, 0, 0);
         move growl = new move("Growl", "Normal", 0, 0, 20);
         move vineWhip = new move("Vine Whip", "Grass", 20, 0, 0);
+        move growth = new move("Growth", "Normal", 0, 20,0);
 
         bulbasaur.stats(83, 17, 13, 90, "Grass");
         bulbasaur.setMove1(vineWhip);
         bulbasaur.setMove2(growl);
+        bulbasaur.setMove3(growth);
 
         oddish.stats(85, 16, 15, 85, "Grass");
         oddish.setMove1(vineWhip);
         oddish.setMove2(tackle);
+        oddish.setMove3(growl);
 
         tentacool.stats(93, 13, 18, 90, "Water");
         tentacool.getMove1(waterGun);
         tentacool.getMove2(growl);
+        tentacool.getMove3(growth);
 
-        growlithe.stats(68, 15, 15, 95, "Fire");
+        growlithe.stats(70, 15, 15, 95, "Fire");
         growlithe.getMove1(ember);
         growlithe.getMove2(tackle);
+        growlithe.getMove3(growth);
 
         charmander.stats(74, 18, 14, 90, "Fire");
         charmander.setMove1(tackle);
@@ -49,6 +54,6 @@ public class Main {
 //        oddish.attack();
         System.out.println(oddish.speed);
         System.out.println(bulbasaur.move1.attackName);
-
+        System.out.println(oddish.move2.attackName);
     }
 }
