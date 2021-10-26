@@ -48,7 +48,7 @@ public class Main {
 //        growlithe.attack();
 //        oddish.attack();
         System.out.println(oddish.speed);
-        System.out.println(bulbasaur.move1);
+        System.out.println(bulbasaur.move1.attackName);
 
     }
 }
