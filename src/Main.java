@@ -1,12 +1,52 @@
 import java.net.PortUnreachableException;
 import java.util.Arrays;
+import java.util.Scanner;
 
 public class Main {
+
+    private static String[] readInput() {
+        System.out.println("\n" + "What now?");
+        String command = input.nextLine();
+        String[] commandParts = command.split(" ");
+        return commandParts;
+    }
+
+//    static boolean running;
+    static int row;
+    static int col;
+    static Location [][] map;
+    static Scanner input = new Scanner(System.in);
+
     public static void main(String[] args) {
 
+
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life.");
-        Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less");
-        Location viridianCity = new Location("Viridian City", "A city full of shattered hopes and dreams");
+        Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less.");
+        Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams.");
+        Location oaksLab  = new Location("Prof. Oak's Lab", "Professor Oak works here. He's a close family friend.");
+        Location rivalsPlace = new Location("Rival's place", "Your rival lives here. Stay alert!");
+
+//        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
+
+
+
+//      Location[][] map;
+
+
+        map = new Location[][] {
+
+                {viridianCity, rivalsPlace},
+                {routeOne},
+                {palletTown, oaksLab}};
+
+                row = 2;
+                col = 0;
+
+        System.out.println(viridianCity.getDescription());
+
+
+        System.out.println(map[2][0].getName() + ". " + map[2][0].getDescription());
+
 
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
@@ -59,25 +99,34 @@ public class Main {
         squirtle.setMove3(growl);
         String[] squirtleMoves = new String[] {squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
+        boolean running = true;
+        while (running) {
+            System.out.println(map[row][col].toString());
+            readInput();
+
+
+        }
+
+
 
 
         tentacool.pet();
 //        System.out.println(tentacool.moves);
 //        growlithe.attack();
 //        oddish.attack();
-        System.out.println(oddish.speed);
-        System.out.println(bulbasaur.move1.type);
-        System.out.println(tentacool.move2.attackName);
-        System.out.println(squirtle.move3.attackName + " deals " + squirtle.move3.damage + " damage." );
-
-
-        System.out.println();
-        System.out.println(Arrays.toString(squirtleMoves));
-        System.out.println(Arrays.toString(charmanderMoves));
-        System.out.println(Arrays.toString(bulbasaurMoves));
-        System.out.println(Arrays.toString(oddishMoves));
-        System.out.println(Arrays.toString(tentacoolMoves));
-        System.out.println(Arrays.toString(growlitheMoves));
+        System.out.println(oddish.type);
+//        System.out.println(bulbasaur.move1.type);
+//        System.out.println(tentacool.move2.attackName);
+//        System.out.println(squirtle.move3.attackName + " deals " + squirtle.move3.damage + " damage." );
+//
+//
+//        System.out.println();
+//        System.out.println(Arrays.toString(squirtleMoves));
+//        System.out.println(Arrays.toString(charmanderMoves));
+//        System.out.println(Arrays.toString(bulbasaurMoves));
+//        System.out.println(Arrays.toString(oddishMoves));
+//        System.out.println(Arrays.toString(tentacoolMoves));
+//        System.out.println(Arrays.toString(growlitheMoves));
 
     }
 }
