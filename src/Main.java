@@ -5,7 +5,8 @@ public class Main {
     public static void main(String[] args) {
 
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life.");
-
+        Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less");
+        Location viridianCity = new Location("Viridian City", "A city full of shattered hopes and dreams");
 
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
