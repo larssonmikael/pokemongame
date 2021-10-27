@@ -32,6 +32,7 @@ public class Pokemon {
     public void setMove3 (move move3) {
         this.move3 = move3;
     }
+
     public move getMove1 (move move1) {
         return this.move1;
     }
@@ -54,6 +55,5 @@ public class Pokemon {
 //            System.out.println("You petted the Pokémon. Hmm.. It doesn't seem to care.");
         return baseHP;
     }
-
 
 }

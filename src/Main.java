@@ -4,6 +4,9 @@ import java.util.Arrays;
 public class Main {
     public static void main(String[] args) {
 
+        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life.");
+
+
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
         Pokemon tentacool = new Pokemon();
@@ -74,5 +77,6 @@ public class Main {
         System.out.println(Arrays.toString(oddishMoves));
         System.out.println(Arrays.toString(tentacoolMoves));
         System.out.println(Arrays.toString(growlitheMoves));
+
     }
 }
