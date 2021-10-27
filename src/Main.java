@@ -4,6 +4,9 @@ import java.util.Scanner;
 
 public class Main {
 
+//    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
+//    Får inte gå till route 1 utan pokemon från oak
+
     private static String[] readInput() {
         System.out.println("\n" + "What now?");
         String command = input.nextLine();
