@@ -31,7 +31,7 @@ public class Main {
 
 
 //      Location[][] map;
-
+//      Gå till labbet, hämta en pokemon. Gå till rivalen och slåss
 
         map = new Location[][] {
 
@@ -41,11 +41,6 @@ public class Main {
 
                 row = 2;
                 col = 0;
-
-        System.out.println(viridianCity.getDescription());
-
-
-        System.out.println(map[2][0].getName() + ". " + map[2][0].getDescription());
 
 
         Pokemon oddish = new Pokemon();
@@ -100,8 +95,11 @@ public class Main {
         String[] squirtleMoves = new String[] {squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
         boolean running = true;
+
         while (running) {
-            System.out.println(map[row][col].toString());
+            System.out.println("This is some kind of Pokémon adventure. Take it for what it is." + "\n");
+
+            System.out.println(map[row][col].locationToString());
             readInput();
 
 

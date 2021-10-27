@@ -20,7 +20,13 @@ public class Location {
         return description;
     }
 
+    public String locationToString() {
+        String location = "You are in " + getName() + ". ";
+        location = location + getDescription();
+        return location;
 
+
+    }
 
 
 }
