@@ -19,7 +19,7 @@ public class move {
     public void setDamage(int damage){
         this.damage = damage;
     }
-    public void setDefenseNerf(int attackBoost){
+    public void setAttackBoost(int attackBoost){
         this.attackBoost = attackBoost;
     }
     public void setAttackNerf(int attackNerf){
