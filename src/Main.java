@@ -26,30 +26,28 @@ public class Main {
             row--;
             if (row < 0) {
                 System.out.println("Stay on the map");
-                row = 0;
+                row++;
             }
         }
         if (direction.equalsIgnoreCase("down")) {
             row++;
-            if (row == map.length + 1) {
+            if (row > 2) {
                 System.out.println("Stay on the map");
                 row--;
             }
         }
         if (direction.equalsIgnoreCase("right")) {
-            try {
-                col++;
-            } catch (ArrayIndexOutOfBoundsException e) {
+            col++;
+            if (col > 1) {
                 System.out.println("Stay on the map");
                 col--;
             }
         }
         if (direction.equalsIgnoreCase("left")) {
-            try {
-                col--;
-            } catch (ArrayIndexOutOfBoundsException e) {
-                col++;
+            col--;
+            if (col < 0) {
                 System.out.println("Stay on the map");
+                col++;
             }
         }
     }
@@ -135,12 +133,17 @@ public class Main {
 
         boolean running = true;
         System.out.println("This is some kind of Pokémon adventure. Take it for what it is." + "\n");
+        System.out.println("Type help to see a list of available actions." + "\n");
 
         while (running) {
 
             System.out.println(map[row][col].locationToString());
             String[] commandParts = readInput();
             String action = commandParts[0];
+
+            if (action.equalsIgnoreCase("Help")) {
+                System.out.println("\n" + "Your available commands are " + "\n" + "Help (obviously)"  + "\n" + "Go - Which is followed by 'up', 'down', 'left' or 'right'.");
+            }
 
             if (action.equalsIgnoreCase("Go")) {
                 if (commandParts.length == 2) {
