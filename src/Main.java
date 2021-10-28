@@ -52,10 +52,15 @@ public class Main {
         }
     }
 
+
+
     //    static boolean running;
 
 
     public static void main(String[] args) {
+        Sign palletSign = new Sign();
+        palletSign.setMessage("The colorful Pallet Town was founded in 1991 by Professor Oak.");
+
 
 
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life.");
@@ -63,9 +68,8 @@ public class Main {
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams.");
         Location oaksLab = new Location("Prof. Oak's Lab", "Professor Oak works here. He's a close family friend.");
         Location rivalsPlace = new Location("Rival's place", "Your rival lives here. Stay alert!");
-
 //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
-
+        palletTown.setItem(palletSign);
 //      Location[][] map;
 //      Gå till labbet, hämta en pokemon. Gå till rivalen och slåss
 
@@ -148,7 +152,12 @@ public class Main {
             if (action.equalsIgnoreCase("Go")) {
                 if (commandParts.length == 2) {
                     inDirection(commandParts[1]);
-                    System.out.println("You went " + commandParts[1]);
+//                    System.out.println(commandParts[1]);
+                }
+            }
+            if (action.equalsIgnoreCase("Read")) {
+                if (commandParts.length == 2) {
+                    // TODO: 2021-10-28 - Add getter for message
                 }
             }
             if (action.equalsIgnoreCase("quit")) {

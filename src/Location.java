@@ -2,6 +2,7 @@ public class Location {
 
     private String name;
     private String description;
+    private Sign sign;
 
     public Location(String name, String description) {
         this.name = name;
@@ -24,8 +25,9 @@ public class Location {
         String location = "You are in " + getName() + ". ";
         location = location + getDescription();
         return location;
-
-
+    }
+    public void setItem(Sign inSign){
+        sign = inSign;
     }
 
 
