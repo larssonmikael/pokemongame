@@ -2,7 +2,12 @@ public class Location {
 
     private String name;
     private String description;
+
+
+
     private Sign sign;
+    private Pokemon pokemon;
+
 
     public Location(String name, String description) {
         this.name = name;
@@ -26,9 +31,16 @@ public class Location {
         location = location + getDescription();
         return location;
     }
-    public void setItem(Sign inSign){
+    public Sign getSign() {
+        return sign;
+    }
+    public void setSign(Sign inSign){
         sign = inSign;
     }
+    public String getMessage(){
+        return sign.toString();
+    }
+
 
 
 }

@@ -45,10 +45,6 @@ public class Pokemon {
 
 
 
-//    public void attack(String ins){
-//        attackPower = 1;
-//        System.out.println("attacked!");
-//    }
     public int pet() {
             baseHP++;
             System.out.println("You petted the Pokémon. It seems a little healthier.");

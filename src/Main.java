@@ -3,6 +3,7 @@ import java.net.PortUnreachableException;
 import java.util.Arrays;
 import java.util.Scanner;
 
+
 public class Main {
     static int row;
     static int col;
@@ -12,6 +13,38 @@ public class Main {
 
 //    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
 //    Får inte gå till route 1 utan pokemon från oak
+    private static void runGame(){
+
+        boolean running = true;
+        System.out.println("This is some kind of Pokémon adventure. Take it for what it is." + "\n");
+        System.out.println("Type help to see a list of available actions." + "\n");
+        while (running) {
+
+            System.out.println(map[row][col].locationToString());
+            String[] commandParts = readInput();
+            String action = commandParts[0];
+
+            if (action.equalsIgnoreCase("Help")) {
+                System.out.println("\n" + "Your available commands are " + "\n" + "Help (obviously)"  + "\n" + "Go - Which is followed by 'up', 'down', 'left' or 'right'.");
+            }
+
+            if (action.equalsIgnoreCase("Go")) {
+                if (commandParts.length == 2) {
+                    inDirection(commandParts[1]);
+//                    System.out.println(commandParts[1]);
+                }
+            }
+            if (action.equalsIgnoreCase("Read")) {
+                if (commandParts.length == 2) {
+                    inRead(commandParts[1]);
+                }
+            }
+            if (action.equalsIgnoreCase("quit")) {
+                running = false;
+            }
+        }
+
+    }
 
 
     private static String[] readInput() {
@@ -20,7 +53,13 @@ public class Main {
         return command.split(" ");
     }
 
-    //      Switch case för riktning?
+    private static void inRead (String message)  {
+        if (message.equalsIgnoreCase("Sign")) {
+            System.out.println(message);
+
+        }
+    }
+
     private static void inDirection(String direction) {
         if (direction.equalsIgnoreCase("up")) {
             row--;
@@ -61,15 +100,17 @@ public class Main {
         Sign palletSign = new Sign();
         palletSign.setMessage("The colorful Pallet Town was founded in 1991 by Professor Oak.");
 
-
-
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life.");
         Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less.");
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams.");
         Location oaksLab = new Location("Prof. Oak's Lab", "Professor Oak works here. He's a close family friend.");
         Location rivalsPlace = new Location("Rival's place", "Your rival lives here. Stay alert!");
-//        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
-        palletTown.setItem(palletSign);
+
+        palletTown.setSign(palletSign);
+
+
+        //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
+
 //      Location[][] map;
 //      Gå till labbet, hämta en pokemon. Gå till rivalen och slåss
 
@@ -81,6 +122,8 @@ public class Main {
 
         row = 2;
         col = 0;
+
+        runGame();
 
 
         Pokemon oddish = new Pokemon();
@@ -135,36 +178,8 @@ public class Main {
         String[] squirtleMoves = new String[]{squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
 
-        boolean running = true;
-        System.out.println("This is some kind of Pokémon adventure. Take it for what it is." + "\n");
-        System.out.println("Type help to see a list of available actions." + "\n");
 
-        while (running) {
 
-            System.out.println(map[row][col].locationToString());
-            String[] commandParts = readInput();
-            String action = commandParts[0];
-
-            if (action.equalsIgnoreCase("Help")) {
-                System.out.println("\n" + "Your available commands are " + "\n" + "Help (obviously)"  + "\n" + "Go - Which is followed by 'up', 'down', 'left' or 'right'.");
-            }
-
-            if (action.equalsIgnoreCase("Go")) {
-                if (commandParts.length == 2) {
-                    inDirection(commandParts[1]);
-//                    System.out.println(commandParts[1]);
-                }
-            }
-            if (action.equalsIgnoreCase("Read")) {
-                if (commandParts.length == 2) {
-                    // TODO: 2021-10-28 - Add getter for message
-                }
-            }
-            if (action.equalsIgnoreCase("quit")) {
-                running = false;
-            }
-
-        }
 
 //          Vad ska vi kunna göra?
 //          Gå, läsa, prata,
