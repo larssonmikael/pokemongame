@@ -1,6 +1,11 @@
 public class Sign {
-    String message;
 
+    public String message;
+
+    public Sign(String inMessage){
+        message = inMessage;
+
+    }
     public String getMessage(String message) {
         return message;
     }

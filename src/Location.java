@@ -1,12 +1,13 @@
+import java.util.stream.Stream;
+
 public class Location {
 
     private String name;
     private String description;
-
-
-
     private Sign sign;
     private Pokemon pokemon;
+
+
 
 
     public Location(String name, String description) {
@@ -31,16 +32,27 @@ public class Location {
         location = location + getDescription();
         return location;
     }
-    public Sign getSign() {
-        return sign;
-    }
-    public void setSign(Sign inSign){
-        sign = inSign;
-    }
-    public String getMessage(){
-        return sign.toString();
+    public String signToString(){
+        try {
+            return sign.message;
+        } catch (NullPointerException e){
+            System.out.println("There are no signs at this place");
+        } return "";
     }
 
+    public String getSign() {
+        return sign.message;
+    }
 
+    public void setSign(Sign sign) {
+        this.sign = sign;
+    }
 
+    public Pokemon getPokemon() {
+        return pokemon;
+    }
+
+    public void setPokemon(Pokemon pokemon) {
+        this.pokemon = pokemon;
+    }
 }

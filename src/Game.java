@@ -6,112 +6,27 @@ public class Game {
     Location[][] map;
     Scanner input = new Scanner(System.in);
 
-
-    //    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
-//    Får inte gå till route 1 utan pokemon från oak
-    public void runGame() {
-
-        boolean running = true;
-        System.out.println("This is some kind of Pokémon adventure. Take it for what it is." + "\n");
-        System.out.println("Type help to see a list of available actions." + "\n");
-        while (running) {
-
-            System.out.println(map[row][col].locationToString());
-            String[] commandParts = readInput();
-            String action = commandParts[0];
-
-            if (action.equalsIgnoreCase("Help")) {
-                System.out.println("\n" + "Your available commands are " + "\n" + "Help (obviously)" + "\n" + "Go - Which is followed by 'up', 'down', 'left' or 'right'.");
-            }
-
-            if (action.equalsIgnoreCase("Go")) {
-                if (commandParts.length == 2) {
-                    inDirection(commandParts[1]);
-//                    System.out.println(commandParts[1]);
-                }
-            }
-            if (action.equalsIgnoreCase("Read")) {
-                if (commandParts.length == 2) {
-                    inRead(commandParts[1]);
-                }
-            }
-            if (action.equalsIgnoreCase("quit")) {
-                running = false;
-            }
-        }
-
-    }
-
-    private String[] readInput() {
-        System.out.println("\n" + "What now?");
-        String command = input.nextLine();
-        return command.split(" ");
-    }
-
-    private void inRead(String message) {
-        if (message.equalsIgnoreCase("Sign")) {
-            System.out.println(message);
-
-        }
-    }
-
-    private void inDirection(String direction) {
-        if (direction.equalsIgnoreCase("up")) {
-            row--;
-            if (row < 0) {
-                System.out.println("Stay on the map");
-                row++;
-            }
-        }
-        if (direction.equalsIgnoreCase("down")) {
-            row++;
-            if (row > 2) {
-                System.out.println("Stay on the map");
-                row--;
-            }
-        }
-        if (direction.equalsIgnoreCase("right")) {
-            col++;
-            if (col > 1) {
-                System.out.println("Stay on the map");
-                col--;
-            }
-        }
-        if (direction.equalsIgnoreCase("left")) {
-            col--;
-            if (col < 0) {
-                System.out.println("Stay on the map");
-                col++;
-            }
-        }
-    }
-
     public void init() {
-
-
-        Sign palletSign = new Sign();
-        palletSign.setMessage("The colorful Pallet Town was founded in 1991 by Professor Oak.");
-
-        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life.");
+        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life." + "\n" + "There is a sign at the town centerpoint");
         Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less.");
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams.");
         Location oaksLab = new Location("Prof. Oak's Lab", "Professor Oak works here. He's a close family friend.");
         Location rivalsPlace = new Location("Rival's place", "Your rival lives here. Stay alert!");
-
-        palletTown.setSign(palletSign);
-
 
         //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
 
 //      Location[][] map;
 //      Gå till labbet, hämta en pokemon. Gå till rivalen och slåss
 
-            map = new Location[][]{
-                        {viridianCity, rivalsPlace},
-                        {routeOne},
-                        {palletTown, oaksLab}};
-            row = 2;
-            col = 0;
+        map = new Location[][]{
+                {viridianCity, rivalsPlace},
+                {routeOne},
+                {palletTown, oaksLab}};
+        row = 2;
+        col = 0;
+
+        Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
+        palletTown.setSign(palletSign);
 
 
         Pokemon oddish = new Pokemon();
@@ -166,6 +81,9 @@ public class Game {
         String[] squirtleMoves = new String[]{squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
 
+        // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one 
+
+
 //          Vad ska vi kunna göra?
 //          Gå, läsa, prata,
 
@@ -187,5 +105,82 @@ public class Game {
 //        System.out.println(Arrays.toString(oddishMoves));
 //        System.out.println(Arrays.toString(tentacoolMoves));
 //        System.out.println(Arrays.toString(growlitheMoves));
+    }
+
+    //    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
+//    Får inte gå till route 1 utan pokemon från oak
+    public void runGame() {
+
+        boolean running = true;
+        System.out.println("This is some kind of Pokémon adventure. Take it for what it is." + "\n");
+        System.out.println("Type help to see a list of available actions." + "\n");
+        while (running) {
+
+            System.out.println(map[row][col].locationToString());
+            String[] commandParts = readInput();
+            String action = commandParts[0];
+
+            if (action.equalsIgnoreCase("Help")) {
+                System.out.println("\n" + "Your available commands are " + "\n" + "Help (obviously)" + "\n" + "Go - Which is followed by 'up', 'down', 'left' or 'right'.");
+            }
+
+            if (action.equalsIgnoreCase("Go")) {
+                if (commandParts.length == 2) {
+                    readDirection(commandParts[1]);
+//                    System.out.println(commandParts[1]);
+                }
+            }
+            if (action.equalsIgnoreCase("Read")) {
+                if (commandParts.length == 2) {
+                    inRead(commandParts[1]);
+                }
+            }
+            if (action.equalsIgnoreCase("quit")) {
+                System.out.println("Smell ya later!");
+                running = false;
+            }
+        }
+
+    }
+    private String[] readInput() {
+        System.out.println("\n" + "What now?");
+        String command = input.nextLine();
+        return command.split(" ");
+    }
+    private void readDirection(String direction) {
+        if (direction.equalsIgnoreCase("up")) {
+            row--;
+            if (row < 0) {
+                System.out.println("Stay on the map");
+                row++;
+            }
+        }
+        if (direction.equalsIgnoreCase("down")) {
+            row++;
+            if (row > 2) {
+                System.out.println("Stay on the map");
+                row--;
+            }
+        }
+        if (direction.equalsIgnoreCase("right")) {
+            col++;
+            if (col > 1) {
+                System.out.println("Stay on the map");
+                col--;
+            }
+        }
+        if (direction.equalsIgnoreCase("left")) {
+            col--;
+            if (col < 0) {
+                System.out.println("Stay on the map");
+                col++;
+            }
+        }
+    }
+    private void inRead(String readSign) {
+        if (readSign.equalsIgnoreCase("Sign")) {
+            String read = map[row][col].signToString();
+            System.out.println(read);
+        }
     }
 }
