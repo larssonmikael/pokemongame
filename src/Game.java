@@ -25,12 +25,7 @@ public class Game {
         row = 2;
         col = 0;
 
-        Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
-        Sign viridianSign = new Sign("Be cautious of the psycho that lives east of here. Rumor has it he fights anyone who enters his room");
 
-
-        palletTown.setSign(palletSign);
-        viridianCity.setSign(viridianSign);
 
 
         Pokemon oddish = new Pokemon();
@@ -84,6 +79,13 @@ public class Game {
         squirtle.setMove3(growl);
         String[] squirtleMoves = new String[]{squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
+        Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
+        Sign viridianSign = new Sign("Be cautious of the psycho that lives east of here. Rumor has it he fights anyone who enters his room");
+        palletTown.setSign(palletSign);
+        viridianCity.setSign(viridianSign);
+
+        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a couple of Pokémon here. Choose one!", 6, null, false);
+        oaksLab.setHuman(professorOak);
 
         // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one 
 
@@ -140,10 +142,17 @@ public class Game {
                     inRead(commandParts[1]);
                 }
             }
-            if (action.equalsIgnoreCase("quit")) {
+            if (action.equalsIgnoreCase("Talk"))
+                if (commandParts.length == 2){
+                    inTalk(commandParts[1]);
+                }
+
+
+                if (action.equalsIgnoreCase("quit")) {
                 System.out.println("Smell ya later!");
                 running = false;
             }
+
         }
 
     }
@@ -184,8 +193,18 @@ public class Game {
     }
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
-            String read = map[row][col].signToString();
-            System.out.println(read + "\n");
+            try {
+                String read = map[row][col].getSign();
+                System.out.println(read + "\n");
+            } catch (NullPointerException e){
+                System.out.println("There are no signs here, dude");
+            }
+        }
+    }
+    private void inTalk(String talkTo) {
+        if (talkTo.equals("Oak")) {
+            String oakSays = map[row][col].talkToString();
+            System.out.println(oakSays + "hallå");
         }
     }
 }

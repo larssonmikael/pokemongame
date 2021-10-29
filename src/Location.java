@@ -6,6 +6,8 @@ public class Location {
     private String description;
     private Sign sign;
     private Pokemon pokemon;
+    private Humans human;
+
 
 
 
@@ -39,6 +41,14 @@ public class Location {
             System.out.println("There are no signs at this place");
         } return "";
     }
+    public String talkToString() {
+        try {
+            return human.message;
+        } catch (NullPointerException e){
+            System.out.println("However much you talk when you're alone, nobody will answer but you" + "\n" + "- The Dalai Lama");
+        }
+        return "";
+    }
 
     public String getSign() {
         return sign.message;
@@ -54,5 +64,9 @@ public class Location {
 
     public void setPokemon(Pokemon pokemon) {
         this.pokemon = pokemon;
+    }
+
+    public void setHuman(Humans human) {
+        this.human = human;
     }
 }
