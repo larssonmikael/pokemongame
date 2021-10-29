@@ -202,9 +202,13 @@ public class Game {
         }
     }
     private void inTalk(String talkTo) {
-        if (talkTo.equals("Oak")) {
-            String oakSays = map[row][col].talkToString();
-            System.out.println(oakSays + "hallå");
+        if (talkTo.equalsIgnoreCase("Oak")) {
+            try {
+                String oakSays = map[row][col].getHuman().message + "\n";
+                System.out.println(oakSays + "\n");
+            } catch (NullPointerException e) {
+                System.out.println("\n" + "Hmm.. the professor must be somewhere else. Where could he be?" + "\n");
+            }
         }
     }
 }

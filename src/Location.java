@@ -9,9 +9,6 @@ public class Location {
     private Humans human;
 
 
-
-
-
     public Location(String name, String description) {
         this.name = name;
         this.description = description;
@@ -35,11 +32,7 @@ public class Location {
         return location;
     }
     public String signToString(){
-        try {
             return sign.message;
-        } catch (NullPointerException e){
-            System.out.println("There are no signs at this place");
-        } return "";
     }
     public String talkToString() {
         try {
@@ -68,5 +61,9 @@ public class Location {
 
     public void setHuman(Humans human) {
         this.human = human;
+    }
+
+    public Humans getHuman() {
+        return human;
     }
 }
