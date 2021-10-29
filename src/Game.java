@@ -26,7 +26,11 @@ public class Game {
         col = 0;
 
         Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
+        Sign viridianSign = new Sign("Be cautious of the psycho that lives east of here. Rumor has it he fights anyone who enters his room");
+
+
         palletTown.setSign(palletSign);
+        viridianCity.setSign(viridianSign);
 
 
         Pokemon oddish = new Pokemon();
@@ -121,7 +125,8 @@ public class Game {
             String action = commandParts[0];
 
             if (action.equalsIgnoreCase("Help")) {
-                System.out.println("\n" + "Your available commands are " + "\n" + "Help (obviously)" + "\n" + "Go - Which is followed by 'up', 'down', 'left' or 'right'.");
+                System.out.println("\n" + "Your available commands are: " + "\n" + "Help (obviously)");
+                System.out.println("Go - Which is followed by 'up', 'down', 'left' or 'right'." + "\n" + "Read - Followed by whatever readable object is near you");
             }
 
             if (action.equalsIgnoreCase("Go")) {
@@ -180,7 +185,7 @@ public class Game {
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
             String read = map[row][col].signToString();
-            System.out.println(read);
+            System.out.println(read + "\n");
         }
     }
 }
