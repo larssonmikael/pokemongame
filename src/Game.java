@@ -7,9 +7,9 @@ public class Game {
     Scanner input = new Scanner(System.in);
 
     public void init() {
-        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life." + "\n" + "There is a sign at the town centerpoint");
+        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life." + "\n There is a sign at the town centerpoint");
         Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less.");
-        Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams.");
+        Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams." + "\n There is a semi-broken sign on the ground but it looks readable.");
         Location oaksLab = new Location("Prof. Oak's Lab", "Professor Oak works here. He's a close family friend.");
         Location rivalsPlace = new Location("Rival's place", "Your rival lives here. Stay alert!");
 
@@ -24,8 +24,6 @@ public class Game {
                 {palletTown, oaksLab}};
         row = 2;
         col = 0;
-
-
 
 
         Pokemon oddish = new Pokemon();
@@ -80,9 +78,14 @@ public class Game {
         String[] squirtleMoves = new String[]{squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
         Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
-        Sign viridianSign = new Sign("Be cautious of the psycho that lives east of here. Rumor has it he fights anyone who enters his room");
+        Sign viridianSign = new Sign("Be cautious of the weirdo that lives east of here. Rumor has it he fights anyone who enters his room");
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
+
+
+        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, rivalsPlace.getPokemon(), true);
+        rivalsPlace.setHuman(rival);
+
 
         Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a couple of Pokémon here. Choose one!", 6, null, false);
         oaksLab.setHuman(professorOak);
@@ -118,7 +121,7 @@ public class Game {
     public void runGame() {
 
         boolean running = true;
-        System.out.println("This is some kind of Pokémon adventure. Take it for what it is." + "\n");
+        System.out.println("This is some kind of Pokémon-based adventure. Take it for what it is." + "\n");
         System.out.println("Type help to see a list of available actions." + "\n");
         while (running) {
 
@@ -128,7 +131,9 @@ public class Game {
 
             if (action.equalsIgnoreCase("Help")) {
                 System.out.println("\n" + "Your available commands are: " + "\n" + "Help (obviously)");
-                System.out.println("Go - Which is followed by 'up', 'down', 'left' or 'right'." + "\n" + "Read - Followed by whatever readable object is near you");
+                System.out.println("Go - Which is followed by 'up', 'down', 'left' or 'right'.");
+                System.out.println("Read - Followed by whatever readable object is near you - 'Sign', for example");
+                System.out.println("Talk - Followed by the name of a person in your close proximity. \n");
             }
 
             if (action.equalsIgnoreCase("Go")) {
@@ -195,19 +200,28 @@ public class Game {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
                 String read = map[row][col].getSign();
-                System.out.println(read + "\n");
+                System.out.println("The sign reads: \n" + read + "\n");
             } catch (NullPointerException e){
-                System.out.println("There are no signs here, dude");
+                System.out.println("There are clearly no signs here. Am i going insane? \n");
             }
         }
     }
     private void inTalk(String talkTo) {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
-                String oakSays = map[row][col].getHuman().message + "\n";
+                String oakSays = map[row][col].getHuman().message;
                 System.out.println(oakSays + "\n");
             } catch (NullPointerException e) {
                 System.out.println("\n" + "Hmm.. the professor must be somewhere else. Where could he be?" + "\n");
+            }
+        }
+        if (talkTo.equalsIgnoreCase("Rival")) {
+            try {
+                String rivalSays = map[row][col].getHuman().message;
+                System.out.println(rivalSays + "\n");
+            } catch (NullPointerException e) {
+                System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you..");
+                System.out.println("Which is strange, since he's not even here \n");
             }
         }
     }
