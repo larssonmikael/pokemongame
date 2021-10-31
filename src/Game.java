@@ -89,6 +89,12 @@ public class Game {
 
         Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a couple of Pokémon here. Choose one!", 6, null, false);
         oaksLab.setHuman(professorOak);
+        oaksLab.setPokemon(tentacool);
+        oaksLab.setPokemon(charmander);
+        oaksLab.setPokemon(bulbasaur);
+        oaksLab.setPokemon(squirtle);
+        oaksLab.setPokemon(growlithe);
+
 
         // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one 
 
@@ -196,9 +202,9 @@ public class Game {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
                 String read = map[row][col].getSign();
-                System.out.println("\nThe sign reads: \n" + read + "\n");
+                System.out.println("\nThe sign reads: \n" + read);
             } catch (NullPointerException e){
-                System.out.println("There are clearly no signs here. Am i going insane? \n");
+                System.out.println("\nThere are clearly no signs here. Am i going insane?");
             }
         }
     }
@@ -206,18 +212,18 @@ public class Game {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
                 String oakSays = map[row][col].getHuman().message;
-                System.out.println("\n" + oakSays + "\n");
+                System.out.println("\n" + oakSays);
             } catch (NullPointerException e) {
-                System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?" + "\n");
+                System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?");
             }
         }
         if (talkTo.equalsIgnoreCase("Rival")) {
             try {
                 String rivalSays = map[row][col].getHuman().message;
-                System.out.println("\n" + rivalSays + "\n");
+                System.out.println("\n" + rivalSays);
             } catch (NullPointerException e) {
                 System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you..");
-                System.out.println("Which is strange, since he's not even here \n");
+                System.out.println("Which is strange, since he's not even here");
             }
         }
     }
