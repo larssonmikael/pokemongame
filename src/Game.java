@@ -8,10 +8,14 @@ public class Game {
     Scanner input = new Scanner(System.in);
 
     public void init() {
-        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. \n There is a sign at the town centerpoint");
-        Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less. \nThere used to be a route heading east. However it has remained buried in rubble since the great earthquake in -06");
-        Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams. \n There is a semi-broken sign on the ground but it looks readable.");
-        Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. \n He is standing in the corner by six weird ball-shaped objects");
+        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
+                "\n There is a sign at the town centerpoint");
+        Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less. " +
+                "\nThere used to be a route heading east. However it has remained buried in rubble since the great earthquake in -06");
+        Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams. " +
+                "\n There is a semi-broken sign on the ground but it looks readable.");
+        Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. " +
+                "\n He is standing in the corner by six weird ball-shaped objects");
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
         Location roadBlock = new Location("Roadblock", "\n This road is blocked. You were not supposed to reach this area..");
 
@@ -93,7 +97,11 @@ public class Game {
         rival.pokemon = rival.getPokemon();
 
 
-        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here. \n You can look at its individual stats by typing its name followed by stats. \n Choose one by typing Choose followed by its name!", 0, null, new String[]{squirtle.getName(), bulbasaur.name, charmander.name, oddish.name,tentacool.name,growlithe.name}, false);
+        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
+                " \n You can look at its individual stats by typing its name followed by stats. " +
+                "\n Choose one by typing Choose followed by its name!",
+                0, null, new String[]{squirtle.getName(), bulbasaur.name, charmander.name, oddish.name,tentacool.name,growlithe.name}, false);
+
         oaksLab.setHuman(professorOak);
 
 
@@ -270,8 +278,8 @@ public class Game {
                 String rivalSays = map[row][col].getHuman().message;
                 System.out.println("\n -" + rivalSays);
             } catch (NullPointerException e) {
-                System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you..");
-                System.out.println("Which is strange, since he's not even here");
+                System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you.. " +
+                        "Which is strange, since he's not even here");
             }
         }
     }
