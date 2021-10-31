@@ -27,7 +27,7 @@ public class Location {
     }
 
     public String locationToString() {
-        String location = "You are in " + getName() + ". ";
+        String location = "\nYou are in " + getName() + ". ";
         location = location + getDescription();
         return location;
     }

@@ -10,8 +10,8 @@ public class Game {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life." + "\n There is a sign at the town centerpoint");
         Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less.");
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams." + "\n There is a semi-broken sign on the ground but it looks readable.");
-        Location oaksLab = new Location("Prof. Oak's Lab", "Professor Oak works here. He's a close family friend.");
-        Location rivalsPlace = new Location("Rival's place", "Your rival lives here. Stay alert!");
+        Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. \n He is standing in the corner by six weird ball-shaped objects");
+        Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
 
         //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
 
@@ -121,8 +121,8 @@ public class Game {
     public void runGame() {
 
         boolean running = true;
-        System.out.println("This is some kind of Pokémon-based adventure. Take it for what it is." + "\n");
-        System.out.println("Type help to see a list of available actions." + "\n");
+        System.out.println("\nThis is some kind of Pokémon-based adventure. Take it for what it is." + "\n");
+        System.out.println("Type help to see a list of available actions.");
         while (running) {
 
             System.out.println(map[row][col].locationToString());
@@ -148,18 +148,14 @@ public class Game {
                 }
             }
             if (action.equalsIgnoreCase("Talk"))
-                if (commandParts.length == 2){
+                if (commandParts.length == 2) {
                     inTalk(commandParts[1]);
                 }
-
-
-                if (action.equalsIgnoreCase("quit")) {
+            if (action.equalsIgnoreCase("quit")) {
                 System.out.println("Smell ya later!");
                 running = false;
             }
-
         }
-
     }
     private String[] readInput() {
         System.out.println("\n" + "What now?");
@@ -200,7 +196,7 @@ public class Game {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
                 String read = map[row][col].getSign();
-                System.out.println("The sign reads: \n" + read + "\n");
+                System.out.println("\nThe sign reads: \n" + read + "\n");
             } catch (NullPointerException e){
                 System.out.println("There are clearly no signs here. Am i going insane? \n");
             }
@@ -210,15 +206,15 @@ public class Game {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
                 String oakSays = map[row][col].getHuman().message;
-                System.out.println(oakSays + "\n");
+                System.out.println("\n" + oakSays + "\n");
             } catch (NullPointerException e) {
-                System.out.println("\n" + "Hmm.. the professor must be somewhere else. Where could he be?" + "\n");
+                System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?" + "\n");
             }
         }
         if (talkTo.equalsIgnoreCase("Rival")) {
             try {
                 String rivalSays = map[row][col].getHuman().message;
-                System.out.println(rivalSays + "\n");
+                System.out.println("\n" + rivalSays + "\n");
             } catch (NullPointerException e) {
                 System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you..");
                 System.out.println("Which is strange, since he's not even here \n");
