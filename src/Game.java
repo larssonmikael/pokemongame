@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -105,12 +106,12 @@ public class Game {
         oaksLab.setHuman(professorOak);
 
 
-//        professorOak.setPokemon(tentacool);
-//        professorOak.setPokemon(charmander);
-//        professorOak.setPokemon(bulbasaur);
-//        professorOak.setPokemon(squirtle);
-//        professorOak.setPokemon(growlithe);
-//        professorOak.setPokemon(oddish);
+        professorOak.setPokemon(tentacool);
+        professorOak.setPokemon(charmander);
+        professorOak.setPokemon(bulbasaur);
+        professorOak.setPokemon(squirtle);
+        professorOak.setPokemon(growlithe);
+        professorOak.setPokemon(oddish);
 //
 
 //        String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), tentacool.getName(), oddish.getName(), growlithe.getName()};
@@ -184,6 +185,10 @@ public class Game {
                 if (commandParts.length == 2) {
                     inTalk(commandParts[1]);
                 }
+            if (action.equalsIgnoreCase("Check"))
+                if (commandParts.length == 2 ) {
+                    inPokemonStats(commandParts[1]);
+                }
             if (action.equalsIgnoreCase("quit")) {
                 System.out.println("Smell ya later!");
                 running = false;
@@ -247,7 +252,13 @@ public class Game {
 //
 //        }
 //    }
-
+    private void inPokemonStats(String readStats){
+        if (readStats.equalsIgnoreCase("Bulbasaur")){
+//            int [] pokemonStats = (map[row][col].getHuman().getPokemon().stats);
+//            System.out.println(pokemonStats.toString());
+            System.out.println("fixa detta ffs");
+        }
+    }
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
@@ -266,6 +277,9 @@ public class Game {
 //                boolean chosenPokemon = false;
 //                if (!chosenPokemon) {
                     System.out.println(Arrays.deepToString(map[row][col].getHuman().pokemonList));
+                    readInput();
+
+
 //                }
                 // TODO: 2021-10-31 Lägg till listan på pkmn här om man inte har nån pkmn redan 
                 

@@ -10,17 +10,26 @@ public class Pokemon {
     int accuracy;
     String type;
     String name;
+    int[] stats;
 
 //Defense?
 
     // Konstruktor för stats. Unika för varje Pokemon
-    public void stats(int baseHP, int attackPower, int speed, int accuracy, String type, String name){
+    public String[] stats(int baseHP, int attackPower, int speed, int accuracy, String type, String name){
         this.baseHP = baseHP;
         this.attackPower = attackPower;
         this.speed = speed;
         this.accuracy = accuracy;
         this.type = type;
         this.name = name;
+        return new String[0];
+    }
+    public int [] getStats(int baseHP, int attackPower, int speed, int accuracy){
+        return stats(getBaseHP(), getAttackPower(), getSpeed(), getAccuracy());
+    }
+
+    private int[] stats(int baseHP, int attackPower, int speed, int accuracy) {
+        return stats;
     }
 
     //Getters och setters för attacker
@@ -101,4 +110,5 @@ public class Pokemon {
 //            System.out.println("You petted the Pokémon. Hmm.. It doesn't seem to care.");
         return baseHP;
     }
+
 }
