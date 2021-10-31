@@ -44,6 +44,7 @@ public class Location {
     }
 
 
+
     public String getSignMessage() {
         return sign.message;
     }

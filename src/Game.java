@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class Game {
@@ -22,7 +23,7 @@ public class Game {
                 {routeOne, roadBlock},
                 {palletTown, oaksLab}};
         row = 2;
-        col = 0;
+        col = 1;
 
         int pokemonParty = 0;
         boolean trainer = true;
@@ -87,30 +88,32 @@ public class Game {
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, null, true);
+        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, rivalsPlace.getPokemon(), null, true);
         rivalsPlace.setHuman(rival);
         rival.pokemon = rival.getPokemon();
 
-        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here. Choose one!", 0, null, false);
+
+        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here. \n You can look at its individual stats by typing its name followed by stats. \n Choose one by typing Choose followed by its name!", 0, null, new String[]{squirtle.getName(), bulbasaur.name, charmander.name, oddish.name,tentacool.name,growlithe.name}, false);
         oaksLab.setHuman(professorOak);
 
-        oaksLab.setPokemon(tentacool);
-        oaksLab.setPokemon(charmander);
-        oaksLab.setPokemon(bulbasaur);
-        oaksLab.setPokemon(squirtle);
-        oaksLab.setPokemon(growlithe);
-        oaksLab.setPokemon(oddish);
 
-        String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), tentacool.getName(), oddish.getName(), growlithe.getName()};
+//        professorOak.setPokemon(tentacool);
+//        professorOak.setPokemon(charmander);
+//        professorOak.setPokemon(bulbasaur);
+//        professorOak.setPokemon(squirtle);
+//        professorOak.setPokemon(growlithe);
+//        professorOak.setPokemon(oddish);
+//
 
-
+//        String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), tentacool.getName(), oddish.getName(), growlithe.getName()};
+//        System.out.println(Arrays.stream(oakPokemonList).toList());
 
 //        if (professorOak.pokemonParty == 0) {
 //            chosenPokemon = true;
 //        }
 
         
-        System.out.println(oakPokemonList);
+
         // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one
 
 
@@ -251,10 +254,10 @@ public class Game {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
                 String oakSays = map[row][col].getHuman().message;
-                System.out.println("\n -" + oakSays);
+                System.out.println("\n -" + oakSays + "\n");
 //                boolean chosenPokemon = false;
 //                if (!chosenPokemon) {
-                    System.out.println(map[row][col].getPokemon().name);
+                    System.out.println(Arrays.deepToString(map[row][col].getHuman().pokemonList));
 //                }
                 // TODO: 2021-10-31 Lägg till listan på pkmn här om man inte har nån pkmn redan 
                 

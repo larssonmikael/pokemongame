@@ -45,6 +45,7 @@ public class Pokemon {
         return this.move3;
     }
 
+
     public int getBaseHP() {
         return baseHP;
     }
@@ -92,6 +93,7 @@ public class Pokemon {
     public void setName(String name) {
         this.name = name;
     }
+
 
     public int pet() {
             baseHP++;
