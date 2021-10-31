@@ -9,16 +9,18 @@ public class Pokemon {
     move move3;
     int accuracy;
     String type;
+    String name;
 
 //Defense?
 
     // Konstruktor för stats. Unika för varje Pokemon
-    public void stats(int baseHP, int attackPower, int speed, int accuracy, String type){
+    public void stats(int baseHP, int attackPower, int speed, int accuracy, String type, String name){
         this.baseHP = baseHP;
         this.attackPower = attackPower;
         this.speed = speed;
         this.accuracy = accuracy;
         this.type = type;
+        this.name = name;
     }
 
     //Getters och setters för attacker
@@ -43,7 +45,53 @@ public class Pokemon {
         return this.move3;
     }
 
+    public int getBaseHP() {
+        return baseHP;
+    }
 
+    public void setBaseHP(int baseHP) {
+        this.baseHP = baseHP;
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public void setSpeed(int speed) {
+        this.speed = speed;
+    }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public int pet() {
             baseHP++;

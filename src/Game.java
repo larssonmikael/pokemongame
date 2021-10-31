@@ -15,8 +15,6 @@ public class Game {
         Location roadBlock = new Location("Roadblock", "\n This road is blocked. You were not supposed to reach this area..");
 
         //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
-
-//      Location[][] map;
 //      Gå till labbet, hämta en pokemon. Gå till rivalen och slåss
 
         map = new Location[][]{
@@ -26,6 +24,11 @@ public class Game {
         row = 2;
         col = 0;
 
+        int pokemonParty = 0;
+        boolean trainer = true;
+        boolean chosenPokemon = false;
+        Pokemon myPokemon;
+
 
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
@@ -33,6 +36,7 @@ public class Game {
         Pokemon bulbasaur = new Pokemon();
         Pokemon charmander = new Pokemon();
         Pokemon squirtle = new Pokemon();
+
 
         move tackle = new move("Tackle", "Normal", 10, 0, 0);
         move vineWhip = new move("Vine Whip", "Grass", 20, 0, 0);
@@ -42,37 +46,37 @@ public class Game {
         move growth = new move("Growth", "Normal", 0, 20, 0);
 
         // Given the different pokemon their individual movepool
-        bulbasaur.stats(83, 17, 13, 90, "Grass");
+        bulbasaur.stats(83, 17, 13, 90, "Grass", "Bulbasaur");
         bulbasaur.setMove1(vineWhip);
         bulbasaur.setMove2(growl);
         bulbasaur.setMove3(growth);
         String[] bulbasaurMoves = new String[]{bulbasaur.move1.attackName, bulbasaur.move2.attackName, bulbasaur.move3.attackName};
 
-        oddish.stats(85, 16, 15, 85, "Grass");
+        oddish.stats(85, 16, 15, 85, "Grass", "Oddish");
         oddish.setMove1(vineWhip);
         oddish.setMove2(tackle);
         oddish.setMove3(growl);
         String[] oddishMoves = new String[]{oddish.move1.attackName, oddish.move2.attackName, oddish.move3.attackName};
 
-        tentacool.stats(93, 13, 18, 90, "Water");
+        tentacool.stats(93, 13, 18, 90, "Water", "Tentacool");
         tentacool.setMove1(waterGun);
         tentacool.setMove2(growl);
         tentacool.setMove3(growth);
         String[] tentacoolMoves = new String[]{tentacool.move1.attackName, tentacool.move2.attackName, tentacool.move3.attackName};
 
-        growlithe.stats(70, 15, 15, 95, "Fire");
+        growlithe.stats(70, 15, 15, 95, "Fire", "Growlithe");
         growlithe.setMove1(ember);
         growlithe.setMove2(tackle);
         growlithe.setMove3(growth);
         String[] growlitheMoves = new String[]{growlithe.move1.attackName, growlithe.move2.attackName, growlithe.move3.attackName};
 
-        charmander.stats(74, 18, 14, 90, "Fire");
+        charmander.stats(74, 18, 14, 90, "Fire", "Charmander");
         charmander.setMove1(tackle);
         charmander.setMove2(ember);
         charmander.setMove3(growl);
         String[] charmanderMoves = new String[]{charmander.move1.attackName, charmander.move2.attackName, charmander.move3.attackName};
 
-        squirtle.stats(80, 17, 14, 90, "Water");
+        squirtle.stats(80, 17, 14, 90, "Water", "Squirtle");
         squirtle.setMove1(waterGun);
         squirtle.setMove2(tackle);
         squirtle.setMove3(growl);
@@ -83,22 +87,31 @@ public class Game {
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, rivalsPlace.getPokemon(), true);
+        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, null, true);
         rivalsPlace.setHuman(rival);
+        rival.pokemon = rival.getPokemon();
 
-
-        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a couple of Pokémon here. Choose one!", 1, null, false);
+        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here. Choose one!", 0, null, false);
         oaksLab.setHuman(professorOak);
+
         oaksLab.setPokemon(tentacool);
         oaksLab.setPokemon(charmander);
         oaksLab.setPokemon(bulbasaur);
         oaksLab.setPokemon(squirtle);
         oaksLab.setPokemon(growlithe);
+        oaksLab.setPokemon(oddish);
+
+        String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), tentacool.getName(), oddish.getName(), growlithe.getName()};
 
 
 
+//        if (professorOak.pokemonParty == 0) {
+//            chosenPokemon = true;
+//        }
 
-        // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one 
+        
+        System.out.println(oakPokemonList);
+        // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one
 
 
 //          Vad ska vi kunna göra?
@@ -138,10 +151,11 @@ public class Game {
             String action = commandParts[0];
 
             if (action.equalsIgnoreCase("Help")) {
-                System.out.println("\n" + "Your available commands are: " + "\n" + "Help (obviously)");
+                System.out.println("\nYour available commands are: " + "\n" + "Help (obviously)");
                 System.out.println("Go - Which is followed by 'up', 'down', 'left' or 'right'.");
                 System.out.println("Read - Followed by whatever readable object is near you - 'Sign', for example");
-                System.out.println("Talk - Followed by the name of a person in your close proximity. \n");
+                System.out.println("Talk - Followed by the name of a person in your close proximity.");
+                System.out.println("Quit - Exit the game and do something completely different");
             }
 
             if (action.equalsIgnoreCase("Go")) {
@@ -238,6 +252,12 @@ public class Game {
             try {
                 String oakSays = map[row][col].getHuman().message;
                 System.out.println("\n -" + oakSays);
+//                boolean chosenPokemon = false;
+//                if (!chosenPokemon) {
+                    System.out.println(map[row][col].getPokemon().name);
+//                }
+                // TODO: 2021-10-31 Lägg till listan på pkmn här om man inte har nån pkmn redan 
+                
             } catch (NullPointerException e) {
                 System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?");
             }
