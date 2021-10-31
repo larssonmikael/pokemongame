@@ -7,12 +7,12 @@ public class Game {
     Scanner input = new Scanner(System.in);
 
     public void init() {
-        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life." + "\n There is a sign at the town centerpoint");
-        Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less.");
-        Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams." + "\n There is a semi-broken sign on the ground but it looks readable.");
+        Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. \n There is a sign at the town centerpoint");
+        Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less. \nThere used to be a route heading east. However it has remained buried in rubble since the great earthquake in -06");
+        Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams. \n There is a semi-broken sign on the ground but it looks readable.");
         Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. \n He is standing in the corner by six weird ball-shaped objects");
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
-        Location roadBlock = new Location("Roadblock", "\n This road is blocked. You'll just have to go around.");
+        Location roadBlock = new Location("Roadblock", "\n This road is blocked. You were not supposed to reach this area..");
 
         //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
 
@@ -83,18 +83,19 @@ public class Game {
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-
         Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, rivalsPlace.getPokemon(), true);
         rivalsPlace.setHuman(rival);
 
 
-        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a couple of Pokémon here. Choose one!", 6, null, false);
+        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a couple of Pokémon here. Choose one!", 1, null, false);
         oaksLab.setHuman(professorOak);
         oaksLab.setPokemon(tentacool);
         oaksLab.setPokemon(charmander);
         oaksLab.setPokemon(bulbasaur);
         oaksLab.setPokemon(squirtle);
         oaksLab.setPokemon(growlithe);
+
+
 
 
         // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one 
@@ -176,12 +177,20 @@ public class Game {
                 System.out.println("Stay on the map");
                 row++;
             }
+            if (row == 1 && col == 1) {
+                row++;
+                System.out.println("Technically speaking, you could reach the blocked route from here. However, in Prof. Oak's lab, the way in is the only way out.");
+            }
         }
         if (direction.equalsIgnoreCase("down")) {
             row++;
             if (row > 2) {
                 System.out.println("Stay on the map");
                 row--;
+            }
+            if (row == 1 && col == 1) {
+                row--;
+                System.out.println("The road is blocked");
             }
         }
         if (direction.equalsIgnoreCase("right")) {
@@ -190,6 +199,10 @@ public class Game {
                 System.out.println("Stay on the map");
                 col--;
             }
+            if (row == 1 && col == 1) {
+                col--;
+                System.out.println("The road is blocked");
+            }
         }
         if (direction.equalsIgnoreCase("left")) {
             col--;
@@ -197,15 +210,26 @@ public class Game {
                 System.out.println("Stay on the map");
                 col++;
             }
+            if (row == 1 && col == 1) {
+                col++;
+                System.out.println("The road is blocked");
+            }
         }
     }
+
+//    public void forbiddenPlace() {
+//        if (row == 1 && col == 1){
+//
+//        }
+//    }
+
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
-                String read = map[row][col].getSignmessage();
+                String read = map[row][col].getSignMessage();
                 System.out.println("\nThe sign reads: \n" + read);
             } catch (NullPointerException e){
-                System.out.println("\nThere are clearly no signs here. Am i going insane?");
+                System.out.println("\nThere are clearly no signs here. Am I seeing things?");
             }
         }
     }
@@ -213,7 +237,7 @@ public class Game {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
                 String oakSays = map[row][col].getHuman().message;
-                System.out.println("\n" + oakSays);
+                System.out.println("\n -" + oakSays);
             } catch (NullPointerException e) {
                 System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?");
             }
@@ -221,7 +245,7 @@ public class Game {
         if (talkTo.equalsIgnoreCase("Rival")) {
             try {
                 String rivalSays = map[row][col].getHuman().message;
-                System.out.println("\n" + rivalSays);
+                System.out.println("\n -" + rivalSays);
             } catch (NullPointerException e) {
                 System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you..");
                 System.out.println("Which is strange, since he's not even here");
