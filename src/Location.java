@@ -43,7 +43,7 @@ public class Location {
         return "";
     }
 
-    public String getSign() {
+    public String getSignmessage() {
         return sign.message;
     }
 

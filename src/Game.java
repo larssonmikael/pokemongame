@@ -12,6 +12,7 @@ public class Game {
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams." + "\n There is a semi-broken sign on the ground but it looks readable.");
         Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. \n He is standing in the corner by six weird ball-shaped objects");
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
+        Location roadBlock = new Location("Roadblock", "\n This road is blocked. You'll just have to go around.");
 
         //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
 
@@ -20,7 +21,7 @@ public class Game {
 
         map = new Location[][]{
                 {viridianCity, rivalsPlace},
-                {routeOne},
+                {routeOne, roadBlock},
                 {palletTown, oaksLab}};
         row = 2;
         col = 0;
@@ -201,7 +202,7 @@ public class Game {
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
-                String read = map[row][col].getSign();
+                String read = map[row][col].getSignmessage();
                 System.out.println("\nThe sign reads: \n" + read);
             } catch (NullPointerException e){
                 System.out.println("\nThere are clearly no signs here. Am i going insane?");
