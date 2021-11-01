@@ -55,7 +55,7 @@ public class Location {
         return "";
     }
 
-
+//    public String[] bulbasaurMoves = new String[]{getPokemon().getMove1().attackName, getPokemon().move2.attackName, getPokemon().move3.attackName};
 
     public String getSignMessage() {
         return sign.message;
@@ -106,5 +106,11 @@ public class Location {
         return human;
     }
 
+
+
+
+    public String [] getMoves(String[] bulbasaurMoves) {
+        return bulbasaurMoves;
+    }
 
 }

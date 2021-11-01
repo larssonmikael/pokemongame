@@ -7,6 +7,10 @@ public class Game {
     int col;
     Location[][] map;
     Scanner input = new Scanner(System.in);
+    int pokemonParty;
+    boolean trainer = true;
+    boolean chosenPokemon = false;
+    Pokemon myPokemon = null;
 
     public void init() {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
@@ -28,12 +32,12 @@ public class Game {
                 {routeOne, roadBlock},
                 {palletTown, oaksLab}};
         row = 2;
-        col = 1;
-
-        int pokemonParty = 0;
-        boolean trainer = true;
-        boolean chosenPokemon = false;
-        Pokemon myPokemon;
+        col = 0;
+//
+//        int pokemonParty = 0;
+//        boolean trainer = true;
+//        boolean chosenPokemon = false;
+//        Pokemon myPokemon = null;
 
 
         Pokemon oddish = new Pokemon();
@@ -56,7 +60,7 @@ public class Game {
         bulbasaur.setMove1(vineWhip);
         bulbasaur.setMove2(growl);
         bulbasaur.setMove3(growth);
-        String[] bulbasaurMoves = new String[]{bulbasaur.move1.attackName, bulbasaur.move2.attackName, bulbasaur.move3.attackName};
+//        String[] bulbasaurMoves = new String[]{bulbasaur.move1.attackName, bulbasaur.move2.attackName, bulbasaur.move3.attackName};
 
         oddish.stats(85, 16, 15, 85, "Grass", "Oddish");
         oddish.setMove1(vineWhip);
@@ -97,6 +101,7 @@ public class Game {
         rivalsPlace.setHuman(rival);
         rival.pokemon = rival.getPokemon();
 
+        Humans player = new Humans(null, 0, myPokemon, null, true, null);
 
         Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 " \n You can look at its individual stats by typing Check followed by its name. " +
@@ -105,10 +110,8 @@ public class Game {
 
         oaksLab.setHuman(professorOak);
         String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
-
         Pokemon [] listOfPokemon = new Pokemon[] {bulbasaur, charmander, squirtle, growlithe, oddish, tentacool};
         professorOak.setPokemonArray(listOfPokemon);
-
         professorOak.setPokemonList(oakPokemonList);
 
         oaksLab.setPokemon(bulbasaur);
@@ -158,8 +161,9 @@ public class Game {
         System.out.println("\nThis is some kind of Pokémon-based adventure. Take it for what it is." + "\n");
         System.out.println("Type help to see a list of available actions.");
         while (running) {
-
             System.out.println(map[row][col].locationToString());
+            System.out.println(myPokemon);
+
             String[] commandParts = readInput();
             String action = commandParts[0];
 
@@ -247,67 +251,117 @@ public class Game {
         }
     }
 
-//    public void forbiddenPlace() {
-//        if (row == 1 && col == 1){
-//
-//        }
-//    }
     private void inPokemonStats(String readStats) {
         if (readStats.equalsIgnoreCase("Bulbasaur")) {
-            map[row][col].getPokemon();
-            System.out.println("\nName:" + map[row][col].getPokemon().getName());
-            System.out.println("Hp:" + map[row][col].getPokemon().getBaseHP());
-            System.out.println("Attackpower:" + map[row][col].getPokemon().getAttackPower());
-            System.out.println("Speed:" + map[row][col].getPokemon().getSpeed());
-            System.out.println("Accuracy:" + map[row][col].getPokemon().getAccuracy());
-            System.out.println("Type:" + map[row][col].getPokemon().getType());
+            try {
+                map[row][col].getPokemon();
+                System.out.println("\nName:" + map[row][col].getPokemon().getName());
+                System.out.println("Hp:" + map[row][col].getPokemon().getBaseHP());
+                System.out.println("Attackpower:" + map[row][col].getPokemon().getAttackPower());
+                System.out.println("Speed:" + map[row][col].getPokemon().getSpeed());
+                System.out.println("Accuracy:" + map[row][col].getPokemon().getAccuracy());
+                System.out.println("Type:" + map[row][col].getPokemon().getType());
+                System.out.println();
+                System.out.println("Move 1: " + map[row][col].getPokemon().move1.attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon().move2.attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon().move3.attackName);
+            } catch (NullPointerException e) {
+                System.out.println("You can only check out Pokémon at Prof. Oak's lab in the south-east part of the world. The professor has all the answers");
+            }
         }
         if (readStats.equalsIgnoreCase("Charmander")) {
             map[row][col].getPokemon2();
-            System.out.println("\nName:" + map[row][col].getPokemon2().getName());
-            System.out.println("Hp:" + map[row][col].getPokemon2().getBaseHP());
-            System.out.println("Attackpower:" + map[row][col].getPokemon2().getAttackPower());
-            System.out.println("Speed:" + map[row][col].getPokemon2().getSpeed());
-            System.out.println("Accuracy:" + map[row][col].getPokemon2().getAccuracy());
-            System.out.println("Type:" + map[row][col].getPokemon2().getType());
+            try {
+                System.out.println("\nName:" + map[row][col].getPokemon2().getName());
+                System.out.println("Hp:" + map[row][col].getPokemon2().getBaseHP());
+                System.out.println("Attackpower:" + map[row][col].getPokemon2().getAttackPower());
+                System.out.println("Speed:" + map[row][col].getPokemon2().getSpeed());
+                System.out.println("Accuracy:" + map[row][col].getPokemon2().getAccuracy());
+                System.out.println("Type:" + map[row][col].getPokemon2().getType());
+                System.out.println();
+                System.out.println("Move 1: " + map[row][col].getPokemon2().move1.attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon2().move2.attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon2().move3.attackName);
+            }
+            catch (NullPointerException e) {
+                System.out.println("You can only check out Pokémon at Prof. Oak's lab. The professor has all the answers");
+            }
         }
         if (readStats.equalsIgnoreCase("Squirtle")) {
-            map[row][col].getPokemon3();
-            System.out.println("\nName:" + map[row][col].getPokemon3().getName());
-            System.out.println("Hp:" + map[row][col].getPokemon3().getBaseHP());
-            System.out.println("Attackpower:" + map[row][col].getPokemon3().getAttackPower());
-            System.out.println("Speed:" + map[row][col].getPokemon3().getSpeed());
-            System.out.println("Accuracy:" + map[row][col].getPokemon3().getAccuracy());
-            System.out.println("Type:" + map[row][col].getPokemon3().getType());
+            try {
+                map[row][col].getPokemon3();
+                System.out.println("\nName:" + map[row][col].getPokemon3().getName());
+                System.out.println("Hp:" + map[row][col].getPokemon3().getBaseHP());
+                System.out.println("Attackpower:" + map[row][col].getPokemon3().getAttackPower());
+                System.out.println("Speed:" + map[row][col].getPokemon3().getSpeed());
+                System.out.println("Accuracy:" + map[row][col].getPokemon3().getAccuracy());
+                System.out.println("Type:" + map[row][col].getPokemon3().getType());
+                System.out.println();
+                System.out.println("Move 1: " + map[row][col].getPokemon3().move1.attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon3().move2.attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon3().move3.attackName);
+            } catch (NullPointerException e) {
+                System.out.println("You can only check out Pokémon at Prof. Oak's lab. The professor has all the answers");
+            }
         }
         if (readStats.equalsIgnoreCase("Oddish")) {
             map[row][col].getPokemon4();
-            System.out.println("\nName:" + map[row][col].getPokemon4().getName());
-            System.out.println("Hp:" + map[row][col].getPokemon4().getBaseHP());
-            System.out.println("Attackpower:" + map[row][col].getPokemon4().getAttackPower());
-            System.out.println("Speed:" + map[row][col].getPokemon4().getSpeed());
-            System.out.println("Accuracy:" + map[row][col].getPokemon4().getAccuracy());
-            System.out.println("Type:" + map[row][col].getPokemon4().getType());
+            try {
+                System.out.println("\nName:" + map[row][col].getPokemon4().getName());
+                System.out.println("Hp:" + map[row][col].getPokemon4().getBaseHP());
+                System.out.println("Attackpower:" + map[row][col].getPokemon4().getAttackPower());
+                System.out.println("Speed:" + map[row][col].getPokemon4().getSpeed());
+                System.out.println("Accuracy:" + map[row][col].getPokemon4().getAccuracy());
+                System.out.println("Type:" + map[row][col].getPokemon4().getType());
+                System.out.println();
+                System.out.println("Move 1: " + map[row][col].getPokemon4().move1.attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon4().move2.attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon4().move3.attackName);
+            } catch (NullPointerException e) {
+                System.out.println("You can only check out Pokémon at Prof. Oak's lab. The professor has all the answers");
+            }
         }
         if (readStats.equalsIgnoreCase("Growlithe")) {
-            map[row][col].getPokemon5();
-            System.out.println("\nName:" + map[row][col].getPokemon5().getName());
-            System.out.println("Hp:" + map[row][col].getPokemon5().getBaseHP());
-            System.out.println("Attackpower:" + map[row][col].getPokemon5().getAttackPower());
-            System.out.println("Speed:" + map[row][col].getPokemon5().getSpeed());
-            System.out.println("Accuracy:" + map[row][col].getPokemon5().getAccuracy());
-            System.out.println("Type:" + map[row][col].getPokemon5().getType());
+            try {
+                map[row][col].getPokemon5();
+                System.out.println("\nName:" + map[row][col].getPokemon5().getName());
+                System.out.println("Hp:" + map[row][col].getPokemon5().getBaseHP());
+                System.out.println("Attackpower:" + map[row][col].getPokemon5().getAttackPower());
+                System.out.println("Speed:" + map[row][col].getPokemon5().getSpeed());
+                System.out.println("Accuracy:" + map[row][col].getPokemon5().getAccuracy());
+                System.out.println("Type:" + map[row][col].getPokemon5().getType());
+                System.out.println();
+                System.out.println("Move 1: " + map[row][col].getPokemon5().move1.attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon5().move2.attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon5().move3.attackName);
+            } catch (NullPointerException e) {
+                System.out.println("You can only check out Pokémon at Prof. Oak's lab. The professor has all the answers");
+            }
         }
         if (readStats.equalsIgnoreCase("Tentacool")) {
             map[row][col].getPokemon6();
-            System.out.println("\nName:" + map[row][col].getPokemon6().getName());
-            System.out.println("Hp:" + map[row][col].getPokemon6().getBaseHP());
-            System.out.println("Attackpower:" + map[row][col].getPokemon6().getAttackPower());
-            System.out.println("Speed:" + map[row][col].getPokemon6().getSpeed());
-            System.out.println("Accuracy:" + map[row][col].getPokemon6().getAccuracy());
-            System.out.println("Type:" + map[row][col].getPokemon6().getType());
+            try {
+                System.out.println("\nName:" + map[row][col].getPokemon6().getName());
+                System.out.println("Hp:" + map[row][col].getPokemon6().getBaseHP());
+                System.out.println("Attackpower:" + map[row][col].getPokemon6().getAttackPower());
+                System.out.println("Speed:" + map[row][col].getPokemon6().getSpeed());
+                System.out.println("Accuracy:" + map[row][col].getPokemon6().getAccuracy());
+                System.out.println("Type:" + map[row][col].getPokemon6().getType());
+                System.out.println();
+                System.out.println("Move 1: " + map[row][col].getPokemon6().move1.attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon6().move2.attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon6().move3.attackName);
+            }
+            catch (NullPointerException e) {
+                System.out.println("You can only check out Pokémon at Prof. Oak's lab. The professor has all the answers");
+            }
         }
     }
+//    private void inPokemonMoves(String readPokemonMoves){
+//        if (readPokemonMoves.equalsIgnoreCase("BulbasaurMoves")) {
+//
+//        }
+//    }
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
