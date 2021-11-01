@@ -12,8 +12,6 @@ public class Pokemon {
     String name;
     int[] stats;
 
-//Defense?
-
     // Konstruktor för stats. Unika för varje Pokemon
     public String[] stats(int baseHP, int attackPower, int speed, int accuracy, String type, String name){
         this.baseHP = baseHP;

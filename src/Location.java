@@ -6,6 +6,7 @@ public class Location {
     private String description;
     private Sign sign;
     private Pokemon pokemon;
+    private Pokemon pokemon2;
     private Humans human;
 
 
@@ -64,9 +65,13 @@ public class Location {
     public Pokemon getPokemon() {
         return pokemon;
     }
+    public Pokemon getPokemon2() {return pokemon2;}
 
     public void setPokemon (Pokemon pokemon) {
         this.pokemon = pokemon;
+    }
+    public void setPokemon2 (Pokemon pokemon2) {
+        this.pokemon2 = pokemon2;
     }
 
     public void setHuman(Humans human) {
@@ -76,4 +81,6 @@ public class Location {
     public Humans getHuman() {
         return human;
     }
+
+
 }

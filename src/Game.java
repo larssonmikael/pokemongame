@@ -93,7 +93,7 @@ public class Game {
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, rivalsPlace.getPokemon(), null, true);
+        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, rivalsPlace.getPokemon(), null, true, null);
         rivalsPlace.setHuman(rival);
         rival.pokemon = rival.getPokemon();
 
@@ -101,32 +101,27 @@ public class Game {
         Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 " \n You can look at its individual stats by typing Check followed by its name. " +
                 "\n Choose one by typing Choose followed by its name!",
-                0, null, null, false);
+                0, null, null, false, null);
 
         oaksLab.setHuman(professorOak);
         String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
-//        (bulbasaur.stats(bulbasaur.getBaseHP(), bulbasaur.getAttackPower(), bulbasaur.getSpeed(), bulbasaur.getAccuracy(), bulbasaur.getType(), bulbasaur.getName());
 
+        Pokemon [] listOfPokemon = new Pokemon[] {bulbasaur, charmander, squirtle, growlithe, oddish, tentacool};
+        professorOak.setPokemonArray(listOfPokemon);
 
         professorOak.setPokemonList(oakPokemonList);
 
 
         oaksLab.setPokemon(bulbasaur);
-        professorOak.setPokemon(charmander);
+        oaksLab.setPokemon2(charmander);
         professorOak.setPokemon(tentacool);
         professorOak.setPokemon(squirtle);
         professorOak.setPokemon(growlithe);
         professorOak.setPokemon(oddish);
-//
-
-
-//        System.out.println(Arrays.stream(oakPokemonList).toList());
 
 //        if (professorOak.pokemonParty == 0) {
 //            chosenPokemon = true;
 //        }
-
-        
 
         // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one
 
@@ -178,7 +173,6 @@ public class Game {
             if (action.equalsIgnoreCase("Go")) {
                 if (commandParts.length == 2) {
                     readDirection(commandParts[1]);
-//                    System.out.println(commandParts[1]);
                 }
             }
             if (action.equalsIgnoreCase("Read")) {
@@ -259,13 +253,22 @@ public class Game {
 //    }
     private void inPokemonStats(String readStats){
         if (readStats.equalsIgnoreCase("Bulbasaur")){
+            map[row][col].getPokemon();
             System.out.println("\nName:" + map[row][col].getPokemon().getName());
             System.out.println("Hp:" + map[row][col].getPokemon().getBaseHP());
             System.out.println("Attack Power:" + map[row][col].getPokemon().getAttackPower());
             System.out.println("Speed:" + map[row][col].getPokemon().getSpeed());
             System.out.println("Accuracy:" + map[row][col].getPokemon().getAccuracy());
             System.out.println("Type:" + map[row][col].getPokemon().getType());
-
+        }
+        if (readStats.equalsIgnoreCase("Charmander")){
+            map[row][col].getPokemon2();
+            System.out.println("\nName:" + map[row][col].getPokemon2().getName());
+            System.out.println("Hp:" + map[row][col].getPokemon2().getBaseHP());
+            System.out.println("Attack Power:" + map[row][col].getPokemon2().getAttackPower());
+            System.out.println("Speed:" + map[row][col].getPokemon2().getSpeed());
+            System.out.println("Accuracy:" + map[row][col].getPokemon2().getAccuracy());
+            System.out.println("Type:" + map[row][col].getPokemon2().getType());
         }
     }
     private void inRead(String readSign) {
@@ -284,8 +287,6 @@ public class Game {
                 String oakSays = map[row][col].getHuman().message;
                 System.out.println("\n -" + oakSays + "\n");
                     System.out.println(Arrays.deepToString(map[row][col].getHuman().pokemonList));
-                    input.nextLine();
-
 
                 // TODO: 2021-10-31 Lägg till listan på pkmn här om man inte har nån pkmn redan
             } catch (NullPointerException e) {
