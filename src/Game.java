@@ -162,7 +162,9 @@ public class Game {
         System.out.println("Type help to see a list of available actions.");
         while (running) {
             System.out.println(map[row][col].locationToString());
-            System.out.println(myPokemon);
+            if (myPokemon != null) {
+                System.out.println(myPokemon.getName() + " is keeping close to you. You feel a bit less alone.");
+            }
 
             String[] commandParts = readInput();
             String action = commandParts[0];
@@ -193,12 +195,63 @@ public class Game {
                 if (commandParts.length == 2 ) {
                     inPokemonStats(commandParts[1]);
                 }
+            if (action.equalsIgnoreCase("Choose"))
+                if (commandParts.length == 2 && row == 2 && col == 1) {
+                    inChoosePokemon(commandParts[1]);
+                }
+            else System.out.println("What are you trying to choose exactly?");
             if (action.equalsIgnoreCase("quit")) {
                 System.out.println("Smell ya later!");
                 running = false;
             }
         }
     }
+
+    private void inChoosePokemon(String iChooseYou) {
+        if (iChooseYou.equalsIgnoreCase("Bulbasaur")) {
+            myPokemon = map[row][col].getPokemon();
+            trainer = true;
+            chosenPokemon = true;
+            pokemonParty ++;
+            System.out.println("You chose Bulbasaur as your companion!");
+        }
+        if (iChooseYou.equalsIgnoreCase("Charmander")) {
+            myPokemon = map[row][col].getPokemon2();
+            trainer = true;
+            chosenPokemon = true;
+            pokemonParty++;
+            System.out.println("You chose Charmander as your companion!");
+        }
+        if (iChooseYou.equalsIgnoreCase("Squirtle")) {
+            myPokemon = map[row][col].getPokemon3();
+            trainer = true;
+            chosenPokemon = true;
+            pokemonParty++;
+            System.out.println("You chose Squirtle as your companion!");
+        }
+        if (iChooseYou.equalsIgnoreCase("Oddish")) {
+            myPokemon = map[row][col].getPokemon4();
+            trainer = true;
+            chosenPokemon = true;
+            pokemonParty++;
+            System.out.println("You chose Oddish as your companion!");
+        }
+        if (iChooseYou.equalsIgnoreCase("Growlithe")) {
+            myPokemon = map[row][col].getPokemon5();
+            trainer = true;
+            chosenPokemon = true;
+            pokemonParty++;
+            System.out.println("You chose Growlithe as your companion!");
+        }
+        if (iChooseYou.equalsIgnoreCase("Tentacool")) {
+            myPokemon = map[row][col].getPokemon6();
+            trainer = true;
+            chosenPokemon = true;
+            pokemonParty++;
+            System.out.println("You chose Tentacool as your companion!");
+        }
+    }
+
     private String[] readInput() {
         System.out.println("\n" + "What now?");
         String command = input.nextLine();
@@ -250,7 +303,6 @@ public class Game {
             }
         }
     }
-
     private void inPokemonStats(String readStats) {
         if (readStats.equalsIgnoreCase("Bulbasaur")) {
             try {
@@ -357,11 +409,6 @@ public class Game {
             }
         }
     }
-//    private void inPokemonMoves(String readPokemonMoves){
-//        if (readPokemonMoves.equalsIgnoreCase("BulbasaurMoves")) {
-//
-//        }
-//    }
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
