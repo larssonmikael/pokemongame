@@ -38,7 +38,7 @@ public class Humans {
         this.pokemon = pokemon;
     }
 
-    public String[] getPokemonList() {
+    public String[] getPokemonList () {
         return pokemonList;
     }
 

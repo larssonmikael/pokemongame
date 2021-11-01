@@ -31,6 +31,14 @@ public class Location {
         location = location + getDescription();
         return location;
     }
+    public String statsToString() {
+        String stats = "\n Hp:" + getPokemon().getBaseHP();
+        stats = stats + "\n Attack:" + getPokemon().getAttackPower();
+        stats = stats + "\n Accuracy:" + getPokemon().getAccuracy();
+        stats = stats + "\n Speed:" + getPokemon().getSpeed();
+        stats = stats + "\n Type:" + getPokemon().getType();
+        return stats;
+    }
     public String signToString(){
             return sign.message;
     }
@@ -57,7 +65,7 @@ public class Location {
         return pokemon;
     }
 
-    public void setPokemon(Pokemon pokemon) {
+    public void setPokemon (Pokemon pokemon) {
         this.pokemon = pokemon;
     }
 
