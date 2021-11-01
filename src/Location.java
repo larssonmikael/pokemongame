@@ -5,10 +5,13 @@ public class Location {
     private String name;
     private String description;
     private Sign sign;
+    private Humans human;
     private Pokemon pokemon;
     private Pokemon pokemon2;
-    private Humans human;
-
+    private Pokemon pokemon3;
+    private Pokemon pokemon4;
+    private Pokemon pokemon5;
+    private Pokemon pokemon6;
 
     public Location(String name, String description) {
         this.name = name;
@@ -66,6 +69,14 @@ public class Location {
         return pokemon;
     }
     public Pokemon getPokemon2() {return pokemon2;}
+    public Pokemon getPokemon3() {
+        return pokemon3;
+    }
+    public Pokemon getPokemon4() {return pokemon4;}
+    public Pokemon getPokemon5() {
+        return pokemon5;
+    }
+    public Pokemon getPokemon6() {return pokemon6;}
 
     public void setPokemon (Pokemon pokemon) {
         this.pokemon = pokemon;
@@ -73,6 +84,19 @@ public class Location {
     public void setPokemon2 (Pokemon pokemon2) {
         this.pokemon2 = pokemon2;
     }
+    public void setPokemon3 (Pokemon pokemon3) {
+        this.pokemon3 = pokemon3;
+    }
+    public void setPokemon4 (Pokemon pokemon4) {
+        this.pokemon4 = pokemon4;
+    }
+    public void setPokemon5 (Pokemon pokemon5) {
+        this.pokemon5 = pokemon5;
+    }
+    public void setPokemon6 (Pokemon pokemon6) {
+        this.pokemon6 = pokemon6;
+    }
+
 
     public void setHuman(Humans human) {
         this.human = human;

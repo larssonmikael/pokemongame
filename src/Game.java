@@ -111,13 +111,14 @@ public class Game {
 
         professorOak.setPokemonList(oakPokemonList);
 
-
         oaksLab.setPokemon(bulbasaur);
         oaksLab.setPokemon2(charmander);
-        professorOak.setPokemon(tentacool);
-        professorOak.setPokemon(squirtle);
-        professorOak.setPokemon(growlithe);
-        professorOak.setPokemon(oddish);
+        oaksLab.setPokemon3(squirtle);
+        oaksLab.setPokemon4(oddish);
+        oaksLab.setPokemon5(growlithe);
+        oaksLab.setPokemon6(tentacool);
+
+
 
 //        if (professorOak.pokemonParty == 0) {
 //            chosenPokemon = true;
@@ -251,24 +252,60 @@ public class Game {
 //
 //        }
 //    }
-    private void inPokemonStats(String readStats){
-        if (readStats.equalsIgnoreCase("Bulbasaur")){
+    private void inPokemonStats(String readStats) {
+        if (readStats.equalsIgnoreCase("Bulbasaur")) {
             map[row][col].getPokemon();
             System.out.println("\nName:" + map[row][col].getPokemon().getName());
             System.out.println("Hp:" + map[row][col].getPokemon().getBaseHP());
-            System.out.println("Attack Power:" + map[row][col].getPokemon().getAttackPower());
+            System.out.println("Attackpower:" + map[row][col].getPokemon().getAttackPower());
             System.out.println("Speed:" + map[row][col].getPokemon().getSpeed());
             System.out.println("Accuracy:" + map[row][col].getPokemon().getAccuracy());
             System.out.println("Type:" + map[row][col].getPokemon().getType());
         }
-        if (readStats.equalsIgnoreCase("Charmander")){
+        if (readStats.equalsIgnoreCase("Charmander")) {
             map[row][col].getPokemon2();
             System.out.println("\nName:" + map[row][col].getPokemon2().getName());
             System.out.println("Hp:" + map[row][col].getPokemon2().getBaseHP());
-            System.out.println("Attack Power:" + map[row][col].getPokemon2().getAttackPower());
+            System.out.println("Attackpower:" + map[row][col].getPokemon2().getAttackPower());
             System.out.println("Speed:" + map[row][col].getPokemon2().getSpeed());
             System.out.println("Accuracy:" + map[row][col].getPokemon2().getAccuracy());
             System.out.println("Type:" + map[row][col].getPokemon2().getType());
+        }
+        if (readStats.equalsIgnoreCase("Squirtle")) {
+            map[row][col].getPokemon3();
+            System.out.println("\nName:" + map[row][col].getPokemon3().getName());
+            System.out.println("Hp:" + map[row][col].getPokemon3().getBaseHP());
+            System.out.println("Attackpower:" + map[row][col].getPokemon3().getAttackPower());
+            System.out.println("Speed:" + map[row][col].getPokemon3().getSpeed());
+            System.out.println("Accuracy:" + map[row][col].getPokemon3().getAccuracy());
+            System.out.println("Type:" + map[row][col].getPokemon3().getType());
+        }
+        if (readStats.equalsIgnoreCase("Oddish")) {
+            map[row][col].getPokemon4();
+            System.out.println("\nName:" + map[row][col].getPokemon4().getName());
+            System.out.println("Hp:" + map[row][col].getPokemon4().getBaseHP());
+            System.out.println("Attackpower:" + map[row][col].getPokemon4().getAttackPower());
+            System.out.println("Speed:" + map[row][col].getPokemon4().getSpeed());
+            System.out.println("Accuracy:" + map[row][col].getPokemon4().getAccuracy());
+            System.out.println("Type:" + map[row][col].getPokemon4().getType());
+        }
+        if (readStats.equalsIgnoreCase("Growlithe")) {
+            map[row][col].getPokemon5();
+            System.out.println("\nName:" + map[row][col].getPokemon5().getName());
+            System.out.println("Hp:" + map[row][col].getPokemon5().getBaseHP());
+            System.out.println("Attackpower:" + map[row][col].getPokemon5().getAttackPower());
+            System.out.println("Speed:" + map[row][col].getPokemon5().getSpeed());
+            System.out.println("Accuracy:" + map[row][col].getPokemon5().getAccuracy());
+            System.out.println("Type:" + map[row][col].getPokemon5().getType());
+        }
+        if (readStats.equalsIgnoreCase("Tentacool")) {
+            map[row][col].getPokemon6();
+            System.out.println("\nName:" + map[row][col].getPokemon6().getName());
+            System.out.println("Hp:" + map[row][col].getPokemon6().getBaseHP());
+            System.out.println("Attackpower:" + map[row][col].getPokemon6().getAttackPower());
+            System.out.println("Speed:" + map[row][col].getPokemon6().getSpeed());
+            System.out.println("Accuracy:" + map[row][col].getPokemon6().getAccuracy());
+            System.out.println("Type:" + map[row][col].getPokemon6().getType());
         }
     }
     private void inRead(String readSign) {
