@@ -195,6 +195,7 @@ public class Game {
             if (action.equalsIgnoreCase("Check"))
                 if (commandParts.length == 2 ) {
                     inPokemonStats(commandParts[1]);
+                    checkMyPokemon(commandParts[1]);
                 }
             if (action.equalsIgnoreCase("Choose"))
                 if (commandParts.length == 2 && row == 2 && col == 1) {
@@ -207,6 +208,11 @@ public class Game {
                 running = false;
             }
         }
+    }
+    private String[] readInput() {
+        System.out.println("\n" + "What now?");
+        String command = input.nextLine();
+        return command.split(" ");
     }
     private void inChoosePokemon(String iChooseYou) {
         if (iChooseYou.equalsIgnoreCase("Bulbasaur")) {
@@ -251,11 +257,6 @@ public class Game {
             pokemonParty++;
             System.out.println("You chose Tentacool as your companion!");
         }
-    }
-    private String[] readInput() {
-        System.out.println("\n" + "What now?");
-        String command = input.nextLine();
-        return command.split(" ");
     }
     private void readDirection(String direction) {
         if (direction.equalsIgnoreCase("up")) {
@@ -442,6 +443,24 @@ public class Game {
             } catch (NullPointerException e) {
                 System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you.. " +
                         "Which is strange, since he's not even here");
+            }
+        }
+    }
+    private void checkMyPokemon(String checkCompanionStats) {
+        if (checkCompanionStats.equalsIgnoreCase("Buddy"))  {
+            try {
+                System.out.println("Name: " + myPokemon.getName());
+                System.out.println("Hp: " + myPokemon.getBaseHP());
+                System.out.println("Attackpower :" + myPokemon.getAttackPower());
+                System.out.println("Speed " + myPokemon.getSpeed());
+                System.out.println("Accuracy " +myPokemon.getAccuracy());
+                System.out.println("Type: " + myPokemon.getType());
+                System.out.println();
+                System.out.println("Move 1: " + myPokemon.getMove1().attackName);
+                System.out.println("Move 2: " + myPokemon.getMove2().attackName);
+                System.out.println("Move 3: " + myPokemon.getMove3().attackName);
+            } catch (NullPointerException e) {
+                System.out.println("You don't have a buddy.. yet! You should visit Prof. Oak!");
             }
         }
     }

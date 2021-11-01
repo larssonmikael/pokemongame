@@ -42,13 +42,13 @@ public class Pokemon {
         this.move3 = move3;
     }
 
-    public move getMove1 (move move1) {
+    public move getMove1 () {
         return this.move1;
     }
-    public move getMove2 (move move2) {
+    public move getMove2 () {
         return this.move2;
     }
-    public move getMove3 (move move2) {
+    public move getMove3 () {
         return this.move3;
     }
 
