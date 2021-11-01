@@ -8,7 +8,7 @@ public class Game {
     Location[][] map;
     Scanner input = new Scanner(System.in);
     int pokemonParty;
-    boolean trainer = true;
+    boolean trainer;
     boolean chosenPokemon = false;
     Pokemon myPokemon = null;
 
@@ -33,6 +33,7 @@ public class Game {
                 {palletTown, oaksLab}};
         row = 2;
         col = 0;
+        trainer = false;
 //
 //        int pokemonParty = 0;
 //        boolean trainer = true;
@@ -198,15 +199,15 @@ public class Game {
             if (action.equalsIgnoreCase("Choose"))
                 if (commandParts.length == 2 && row == 2 && col == 1) {
                     inChoosePokemon(commandParts[1]);
+                } else {
+                    System.out.println("What are you trying to choose exactly?");
                 }
-            else System.out.println("What are you trying to choose exactly?");
             if (action.equalsIgnoreCase("quit")) {
                 System.out.println("Smell ya later!");
                 running = false;
             }
         }
     }
-
     private void inChoosePokemon(String iChooseYou) {
         if (iChooseYou.equalsIgnoreCase("Bulbasaur")) {
             myPokemon = map[row][col].getPokemon();
@@ -251,7 +252,6 @@ public class Game {
             System.out.println("You chose Tentacool as your companion!");
         }
     }
-
     private String[] readInput() {
         System.out.println("\n" + "What now?");
         String command = input.nextLine();
@@ -289,6 +289,10 @@ public class Game {
             if (row == 1 && col == 1) {
                 col--;
                 System.out.println("The road is blocked");
+            }
+            if (row == 0 && col == 1 && !trainer) {
+                col--;
+                System.out.println("Someone's voice: HEY!! \n Don't go in there without a Pokémon! That dude's a looney!");
             }
         }
         if (direction.equalsIgnoreCase("left")) {
