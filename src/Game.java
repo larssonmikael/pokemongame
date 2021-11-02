@@ -16,6 +16,7 @@ public class Game {
     boolean chosenPokemon = false;
     Pokemon myPokemon = null;
     File runAway = new File("SFX/He_ran_away.wav");
+    File petSound = new File("SFX/Pet_Sound.wav");
 
     public void init() {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
@@ -467,6 +468,7 @@ public class Game {
     private void inPetBuddy(String petBuddy) {
         if (petBuddy.equalsIgnoreCase("Buddy")) {
             myPokemon.pet();
+            playSfx(petSound);
         }
     }
     private void playSfx(File sound) {
