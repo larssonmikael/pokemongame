@@ -38,7 +38,7 @@ public class Game {
         trainer = false;
         myPokemon = null;
 
-//      Create pokemon, moves and stats
+//      Create Pokémon, moves and stats
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
         Pokemon tentacool = new Pokemon();
@@ -110,7 +110,6 @@ public class Game {
         oaksLab.setPokemon6(tentacool);
     }
 
-    //    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
     public void runGame() {
 
         boolean running = true;
@@ -157,12 +156,12 @@ public class Game {
                     checkMyPokemon(commandParts[1]);
                 }
             }
-//          Choose a pokemon and prevent user from switching pokemon once the choice has been made
+//          Choose a Pokémon and prevent user from switching Pokémon once the choice has been made
             if (action.equalsIgnoreCase("Choose")) {
                 if (commandParts.length == 2 && row == 2 && col == 1  && myPokemon == null) {
                     inChoosePokemon(commandParts[1]);
                 } else if (commandParts.length == 2 && row == 2 && col == 1) {
-                    System.out.println("You're not trying to disbandon " + myPokemon.name + " are you?");
+                    System.out.println("You're not trying to abandon " + myPokemon.name + " are you?");
                 }
             }
             if (action.equalsIgnoreCase("Pet") && myPokemon != null) {
@@ -191,42 +190,42 @@ public class Game {
             trainer = true;
             chosenPokemon = true;
             rivalPokemon = (map[2][1].getPokemon5());
-            System.out.println("You chose Bulbasaur as your companion!");
+            System.out.println("You chose Bulbasaur as your companion! It will react to Buddy.");
         }
         if (iChooseYou.equalsIgnoreCase("Charmander")) {
             myPokemon = map[row][col].getPokemon2();
             trainer = true;
             chosenPokemon = true;
             rivalPokemon = (map[2][1].getPokemon6());
-            System.out.println("You chose Charmander as your companion!");
+            System.out.println("You chose Charmander as your companion! It will react to Buddy.");
         }
         if (iChooseYou.equalsIgnoreCase("Squirtle")) {
             myPokemon = map[row][col].getPokemon3();
             trainer = true;
             chosenPokemon = true;
             rivalPokemon = (map[2][1].getPokemon4());
-            System.out.println("You chose Squirtle as your companion!");
+            System.out.println("You chose Squirtle as your companion! It will react to Buddy.");
         }
         if (iChooseYou.equalsIgnoreCase("Oddish")) {
             myPokemon = map[row][col].getPokemon4();
             trainer = true;
             chosenPokemon = true;
             rivalPokemon = (map[2][1].getPokemon2());
-            System.out.println("You chose Oddish as your companion!");
+            System.out.println("You chose Oddish as your companion! It will react to Buddy.");
         }
         if (iChooseYou.equalsIgnoreCase("Growlithe")) {
             myPokemon = map[row][col].getPokemon5();
             trainer = true;
             chosenPokemon = true;
             rivalPokemon = (map[2][1].getPokemon3());
-            System.out.println("You chose Growlithe as your companion!");
+            System.out.println("You chose Growlithe as your companion! It will react to Buddy.");
         }
         if (iChooseYou.equalsIgnoreCase("Tentacool")) {
             myPokemon = map[row][col].getPokemon6();
             trainer = true;
             chosenPokemon = true;
             rivalPokemon = (map[2][1].getPokemon());
-            System.out.println("You chose Tentacool as your companion!");
+            System.out.println("You chose Tentacool as your companion! It will react to Buddy.");
         }
     }
 
@@ -418,8 +417,6 @@ public class Game {
                 String oakSays = map[row][col].getHuman().message;
                 System.out.println("\n -" + oakSays + "\n");
                     System.out.println(Arrays.deepToString(map[row][col].getHuman().pokemonList));
-
-                // TODO: 2021-10-31 Lägg till listan på pkmn här om man inte har nån pkmn redan
             } catch (NullPointerException e) {
                 System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?");
             }
