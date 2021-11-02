@@ -35,14 +35,14 @@ public class Location {
         location = location + getDescription();
         return location;
     }
-    public String statsToString() {
-        String stats = "\n Hp:" + getPokemon().getBaseHP();
-        stats = stats + "\n Attack:" + getPokemon().getAttackPower();
-        stats = stats + "\n Accuracy:" + getPokemon().getAccuracy();
-        stats = stats + "\n Speed:" + getPokemon().getSpeed();
-        stats = stats + "\n Type:" + getPokemon().getType();
-        return stats;
-    }
+//    public String statsToString() {
+//        String stats = "\n Hp:" + getPokemon().getBaseHP();
+//        stats = stats + "\n Attack:" + getPokemon().getAttackPower();
+//        stats = stats + "\n Accuracy:" + getPokemon().getAccuracy();
+//        stats = stats + "\n Speed:" + getPokemon().getSpeed();
+//        stats = stats + "\n Type:" + getPokemon().getType();
+//        return stats;
+//    }
     public String signToString(){
             return sign.message;
     }
@@ -54,8 +54,6 @@ public class Location {
         }
         return "";
     }
-
-//    public String[] bulbasaurMoves = new String[]{getPokemon().getMove1().attackName, getPokemon().move2.attackName, getPokemon().move3.attackName};
 
     public String getSignMessage() {
         return sign.message;
@@ -109,8 +107,8 @@ public class Location {
 
 
 
-    public String [] getMoves(String[] bulbasaurMoves) {
-        return bulbasaurMoves;
-    }
+//    public String [] getMoves(String[] bulbasaurMoves) {
+//        return bulbasaurMoves;
+//    }
 
 }

@@ -68,44 +68,44 @@ public class Game {
         oddish.setMove1(vineWhip);
         oddish.setMove2(tackle);
         oddish.setMove3(growl);
-        String[] oddishMoves = new String[]{oddish.move1.attackName, oddish.move2.attackName, oddish.move3.attackName};
+//        String[] oddishMoves = new String[]{oddish.move1.attackName, oddish.move2.attackName, oddish.move3.attackName};
 
         tentacool.stats(93, 13, 15, 90, "Water", "Tentacool");
         tentacool.setMove1(waterGun);
         tentacool.setMove2(growl);
         tentacool.setMove3(growth);
-        String[] tentacoolMoves = new String[]{tentacool.move1.attackName, tentacool.move2.attackName, tentacool.move3.attackName};
+//        String[] tentacoolMoves = new String[]{tentacool.move1.attackName, tentacool.move2.attackName, tentacool.move3.attackName};
 
         growlithe.stats(70, 15, 15, 95, "Fire", "Growlithe");
         growlithe.setMove1(ember);
         growlithe.setMove2(tackle);
         growlithe.setMove3(growth);
-        String[] growlitheMoves = new String[]{growlithe.move1.attackName, growlithe.move2.attackName, growlithe.move3.attackName};
+//        String[] growlitheMoves = new String[]{growlithe.move1.attackName, growlithe.move2.attackName, growlithe.move3.attackName};
 
         charmander.stats(74, 18, 16, 90, "Fire", "Charmander");
         charmander.setMove1(tackle);
         charmander.setMove2(ember);
         charmander.setMove3(growl);
-        String[] charmanderMoves = new String[]{charmander.move1.attackName, charmander.move2.attackName, charmander.move3.attackName};
+//        String[] charmanderMoves = new String[]{charmander.move1.attackName, charmander.move2.attackName, charmander.move3.attackName};
 
         squirtle.stats(80, 17, 16, 90, "Water", "Squirtle");
         squirtle.setMove1(waterGun);
         squirtle.setMove2(tackle);
         squirtle.setMove3(growl);
-        String[] squirtleMoves = new String[]{squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
+//        String[] squirtleMoves = new String[]{squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
         Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
         Sign viridianSign = new Sign("Be cautious of the weirdo that lives east of here. Rumor has it he fights anyone who enters his room");
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-        Humans rival = new Humans("You got some nerve coming here. You're gonna get it now", 1, rivalsPlace.getPokemon(), null, true, null);
+        Humans rival = new Humans("Rival","You got some nerve coming here. You're gonna get it now!", 1, rivalsPlace.getPokemon(), null, true, null);
         rivalsPlace.setHuman(rival);
         rival.pokemon = rival.getPokemon();
 
-        Humans player = new Humans(null, 0, myPokemon, null, true, null);
+//        Humans player = new Humans(null, 0, myPokemon, null, true, null);
 
-        Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
+        Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 " \n Each one of these Pokémon has its own unique moves stats. " +
                 "\n You can look at its individual stats by typing 'Check' followed by its name. " +
                 "\n Choose one by typing 'Choose' followed by its name!" +
@@ -115,7 +115,7 @@ public class Game {
         oaksLab.setHuman(professorOak);
         String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
         Pokemon [] listOfPokemon = new Pokemon[] {bulbasaur, charmander, squirtle, growlithe, oddish, tentacool};
-        professorOak.setPokemonArray(listOfPokemon);
+//        professorOak.setPokemonArray(listOfPokemon);
         professorOak.setPokemonList(oakPokemonList);
 
         oaksLab.setPokemon(bulbasaur);
@@ -168,7 +168,6 @@ public class Game {
             if (myPokemon != null) {
                 System.out.println(myPokemon.getName() + " is keeping close to you. You feel a bit less alone.");
             }
-
             String[] commandParts = readInput();
             String action = commandParts[0];
 
@@ -180,7 +179,7 @@ public class Game {
                 System.out.println("Quit - Exit the game and do something completely different");
                 if (myPokemon != null){
                     System.out.println("\nNow that you have a buddy by your side: \nCheck Buddy - Inspect your buddy");
-                    System.out.println("Pet Buddy - Shower your buddy with love and affection.  -  INTEGRERA");
+                    System.out.println("Pet Buddy - Shower your buddy with love and affection.");
                 }
             }
 
@@ -224,6 +223,18 @@ public class Game {
                 running = false;
             }
         }
+    }
+    public void battleMode(Pokemon myPokemon, Pokemon pokemon){
+
+        boolean battle = true;
+        System.out.println("You've engaged in a battle!");
+
+        while (battle){
+
+
+
+        }
+
     }
     private String[] readInput() {
         System.out.println("\n" + "What now?");
@@ -310,6 +321,12 @@ public class Game {
             if (row == 0 && col == 1 && !trainer) {
                 col--;
                 System.out.println("Someone's voice: HEY!! \nDon't go in there without a Pokémon! That dude's a looney!");
+            }
+            if (row == 0 && col == 1 && trainer) {
+                System.out.println("-" + map[0][1].getHuman().message);
+                System.out.println("You've encountered " + map[0][1].getHuman().name + "\nBattle or Run?");
+                input.nextLine();
+
             }
         }
         if (direction.equalsIgnoreCase("left")) {
@@ -456,8 +473,8 @@ public class Game {
             }
         }
     }
-    private void checkMyPokemon(String checkCompanionStats) {
-        if (checkCompanionStats.equalsIgnoreCase("Buddy"))  {
+    private void checkMyPokemon(String checkBuddyStats) {
+        if (checkBuddyStats.equalsIgnoreCase("Buddy"))  {
             try {
                 System.out.println("Name: " + myPokemon.getName());
                 System.out.println("Hp: " + myPokemon.getBaseHP());

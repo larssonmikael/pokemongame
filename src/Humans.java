@@ -1,5 +1,6 @@
 public class Humans {
 
+    String name;
     String message;
     int pokemonParty;
     Pokemon pokemon;
@@ -8,13 +9,22 @@ public class Humans {
     String [] pokemonList;
     Pokemon [] pokemonArray;
 
-    public Humans(String message, int pokemonParty, Pokemon pokemon, String[] pokemonList, boolean trainer, Pokemon[] pokemonArray){
+    public Humans(String name, String message, int pokemonParty, Pokemon pokemon, String[] pokemonList, boolean trainer, Pokemon[] pokemonArray){
         this.message = message;
         this.pokemonParty = pokemonParty;
         this.pokemon = pokemon;
         this.trainer = trainer;
         this.pokemonList = pokemonList;
         this.pokemonArray = pokemonArray;
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getMessage() {
