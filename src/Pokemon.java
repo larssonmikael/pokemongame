@@ -103,10 +103,16 @@ public class Pokemon {
 
 
     public int pet() {
-            baseHP++;
-            System.out.println("You petted the Pokémon. It seems a little healthier.");
+        if (speed <= 19) {
+            baseHP = baseHP + 3;
+            speed = speed + 1;
+            System.out.println("You petted the Pokémon. It seems healthier.");
+//            Cap för att inte ge effekt efter 5 pets?
 //            System.out.println("You petted the Pokémon. Hmm.. It doesn't seem to care.");
-        return baseHP;
+            return baseHP + speed;
+        } else {
+            System.out.println("You petted the Pokémon. Hmm.. It seems unaffected?");
+            return baseHP + speed;
+        }
     }
-
 }

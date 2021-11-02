@@ -34,6 +34,7 @@ public class Game {
         row = 2;
         col = 0;
         trainer = false;
+
 //
 //        int pokemonParty = 0;
 //        boolean trainer = true;
@@ -57,7 +58,7 @@ public class Game {
         move growth = new move("Growth", "Normal", 0, 20, 0);
 
         // Given the different pokemon their individual movepool
-        bulbasaur.stats(83, 17, 13, 90, "Grass", "Bulbasaur");
+        bulbasaur.stats(83, 17, 14, 90, "Grass", "Bulbasaur");
         bulbasaur.setMove1(vineWhip);
         bulbasaur.setMove2(growl);
         bulbasaur.setMove3(growth);
@@ -69,7 +70,7 @@ public class Game {
         oddish.setMove3(growl);
         String[] oddishMoves = new String[]{oddish.move1.attackName, oddish.move2.attackName, oddish.move3.attackName};
 
-        tentacool.stats(93, 13, 18, 90, "Water", "Tentacool");
+        tentacool.stats(93, 13, 15, 90, "Water", "Tentacool");
         tentacool.setMove1(waterGun);
         tentacool.setMove2(growl);
         tentacool.setMove3(growth);
@@ -81,13 +82,13 @@ public class Game {
         growlithe.setMove3(growth);
         String[] growlitheMoves = new String[]{growlithe.move1.attackName, growlithe.move2.attackName, growlithe.move3.attackName};
 
-        charmander.stats(74, 18, 14, 90, "Fire", "Charmander");
+        charmander.stats(74, 18, 16, 90, "Fire", "Charmander");
         charmander.setMove1(tackle);
         charmander.setMove2(ember);
         charmander.setMove3(growl);
         String[] charmanderMoves = new String[]{charmander.move1.attackName, charmander.move2.attackName, charmander.move3.attackName};
 
-        squirtle.stats(80, 17, 14, 90, "Water", "Squirtle");
+        squirtle.stats(80, 17, 16, 90, "Water", "Squirtle");
         squirtle.setMove1(waterGun);
         squirtle.setMove2(tackle);
         squirtle.setMove3(growl);
@@ -123,7 +124,7 @@ public class Game {
         oaksLab.setPokemon5(growlithe);
         oaksLab.setPokemon6(tentacool);
 
-
+        myPokemon = oaksLab.getPokemon();
 
 //        if (professorOak.pokemonParty == 0) {
 //            chosenPokemon = true;
@@ -193,21 +194,31 @@ public class Game {
                     inRead(commandParts[1]);
                 }
             }
-            if (action.equalsIgnoreCase("Talk"))
+            if (action.equalsIgnoreCase("Talk")) {
                 if (commandParts.length == 2) {
                     inTalk(commandParts[1]);
                 }
-            if (action.equalsIgnoreCase("Check"))
+            }
+            if (action.equalsIgnoreCase("Check")) {
                 if (commandParts.length == 2 ) {
                     inPokemonStats(commandParts[1]);
                     checkMyPokemon(commandParts[1]);
                 }
-            if (action.equalsIgnoreCase("Choose"))
+            }
+            if (action.equalsIgnoreCase("Choose")) {
                 if (commandParts.length == 2 && row == 2 && col == 1) {
                     inChoosePokemon(commandParts[1]);
                 } else {
                     System.out.println("What are you trying to choose exactly?");
                 }
+            }
+            if (action.equalsIgnoreCase("Pet") && myPokemon != null) {
+                if (commandParts.length == 2) {
+                    inPetBuddy(commandParts[1]);
+                } else {
+                    System.out.println("Pet what?");
+                }
+            }
             if (action.equalsIgnoreCase("quit")) {
                 System.out.println("Smell ya later!");
                 running = false;
@@ -467,6 +478,11 @@ public class Game {
             } catch (NullPointerException e) {
                 System.out.println("You don't have a buddy.. yet! You should visit Prof. Oak.");
             }
+        }
+    }
+    private void inPetBuddy(String petBuddy) {
+        if (petBuddy.equalsIgnoreCase("Buddy")) {
+            myPokemon.pet();
         }
     }
 }
