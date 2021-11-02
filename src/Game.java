@@ -108,7 +108,8 @@ public class Game {
         Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 " \n Each one of these Pokémon has its own unique moves stats. " +
                 "\n You can look at its individual stats by typing 'Check' followed by its name. " +
-                "\n Choose one by typing 'Choose' followed by its name!",
+                "\n Choose one by typing 'Choose' followed by its name!" +
+                "\n Choose with care. These creatures tend to stick to their owners.",
                 0, null, null, false, null);
 
         oaksLab.setHuman(professorOak);
@@ -326,7 +327,6 @@ public class Game {
     private void inPokemonStats(String readStats) {
         if (readStats.equalsIgnoreCase("Bulbasaur")) {
             try {
-                map[row][col].getPokemon();
                 System.out.println("\nName:" + map[row][col].getPokemon().getName());
                 System.out.println("Hp:" + map[row][col].getPokemon().getBaseHP());
                 System.out.println("Attackpower:" + map[row][col].getPokemon().getAttackPower());
@@ -342,7 +342,6 @@ public class Game {
             }
         }
         if (readStats.equalsIgnoreCase("Charmander")) {
-            map[row][col].getPokemon2();
             try {
                 System.out.println("\nName:" + map[row][col].getPokemon2().getName());
                 System.out.println("Hp:" + map[row][col].getPokemon2().getBaseHP());
@@ -361,7 +360,6 @@ public class Game {
         }
         if (readStats.equalsIgnoreCase("Squirtle")) {
             try {
-                map[row][col].getPokemon3();
                 System.out.println("\nName:" + map[row][col].getPokemon3().getName());
                 System.out.println("Hp:" + map[row][col].getPokemon3().getBaseHP());
                 System.out.println("Attackpower:" + map[row][col].getPokemon3().getAttackPower());
@@ -377,7 +375,6 @@ public class Game {
             }
         }
         if (readStats.equalsIgnoreCase("Oddish")) {
-            map[row][col].getPokemon4();
             try {
                 System.out.println("\nName:" + map[row][col].getPokemon4().getName());
                 System.out.println("Hp:" + map[row][col].getPokemon4().getBaseHP());
@@ -395,7 +392,6 @@ public class Game {
         }
         if (readStats.equalsIgnoreCase("Growlithe")) {
             try {
-                map[row][col].getPokemon5();
                 System.out.println("\nName:" + map[row][col].getPokemon5().getName());
                 System.out.println("Hp:" + map[row][col].getPokemon5().getBaseHP());
                 System.out.println("Attackpower:" + map[row][col].getPokemon5().getAttackPower());
@@ -411,7 +407,6 @@ public class Game {
             }
         }
         if (readStats.equalsIgnoreCase("Tentacool")) {
-            map[row][col].getPokemon6();
             try {
                 System.out.println("\nName:" + map[row][col].getPokemon6().getName());
                 System.out.println("Hp:" + map[row][col].getPokemon6().getBaseHP());
