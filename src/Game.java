@@ -178,7 +178,8 @@ public class Game {
                 System.out.println("Talk - Followed by the name of a person in your close proximity.");
                 System.out.println("Quit - Exit the game and do something completely different");
                 if (myPokemon != null){
-                    System.out.println("Now that you have a buddy by your side: \nCheck Buddy - Inspect your buddy");
+                    System.out.println("\nNow that you have a buddy by your side: \nCheck Buddy - Inspect your buddy");
+                    System.out.println("Pet Buddy - Shower your buddy with love and affection.  -  INTEGRERA");
                 }
             }
 
@@ -464,7 +465,7 @@ public class Game {
                 System.out.println("Move 2: " + myPokemon.getMove2().attackName);
                 System.out.println("Move 3: " + myPokemon.getMove3().attackName);
             } catch (NullPointerException e) {
-                System.out.println("You don't have a buddy.. yet! You should visit Prof. Oak!");
+                System.out.println("You don't have a buddy.. yet! You should visit Prof. Oak.");
             }
         }
     }
