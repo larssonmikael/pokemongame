@@ -197,7 +197,7 @@ public class Game {
             }
         }
     }
-    public void battleMode(Pokemon myPokemon, Pokemon pokemon){
+    public void startBattle(Pokemon myPokemon, Pokemon pokemon){
 
         boolean battle = true;
         System.out.println("You've engaged in a battle!");
@@ -295,9 +295,11 @@ public class Game {
             }
             if (row == 0 && col == 1 && trainer) {
                 System.out.println("-" + map[0][1].getHuman().message);
-                System.out.println("You've encountered " + map[0][1].getHuman().name + "\nBattle or Run?");
-                input.nextLine();
-
+                System.out.println("You've encountered " + map[0][1].getHuman().name + "\nBattle (Not yet implemented) or Run?");
+                if (input.nextLine().equalsIgnoreCase("Run")) {
+                    System.out.println("You ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
+                    map[row][col] = map[2][0];
+                }
             }
         }
         if (direction.equalsIgnoreCase("left")) {
