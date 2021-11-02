@@ -124,7 +124,6 @@ public class Game {
         oaksLab.setPokemon5(growlithe);
         oaksLab.setPokemon6(tentacool);
 
-        myPokemon = oaksLab.getPokemon();
 
 //        if (professorOak.pokemonParty == 0) {
 //            chosenPokemon = true;
@@ -206,10 +205,10 @@ public class Game {
                 }
             }
             if (action.equalsIgnoreCase("Choose")) {
-                if (commandParts.length == 2 && row == 2 && col == 1) {
+                if (commandParts.length == 2 && row == 2 && col == 1  && myPokemon == null) {
                     inChoosePokemon(commandParts[1]);
-                } else {
-                    System.out.println("What are you trying to choose exactly?");
+                } else if (commandParts.length == 2 && row == 2 && col == 1) {
+                    System.out.println("You're not trying to disbandon " + myPokemon.name + " are you?");
                 }
             }
             if (action.equalsIgnoreCase("Pet") && myPokemon != null) {

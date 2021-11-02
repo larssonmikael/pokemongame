@@ -103,7 +103,8 @@ public class Pokemon {
 
 
     public int pet() {
-        if (speed <= 19) {
+        int maxSpeed = 19;
+        if (speed <= maxSpeed) {
             baseHP = baseHP + 3;
             speed = speed + 1;
             System.out.println("You petted the Pokémon. It seems healthier.");
