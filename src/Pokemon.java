@@ -98,7 +98,7 @@ public class Pokemon {
         this.name = name;
     }
 
-//  Petting the pokemon increases its stats to a certain degree
+//  Petting the pokemon increases some of its stats to a certain degree
     public int pet() {
         int maxSpeed = 19;
         if (speed <= maxSpeed) {
