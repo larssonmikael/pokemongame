@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class testClass {
     Humans mikael = new Humans("Mikael", "That's my name", null, null, true);
+    Humans olle = new Humans("Olle", null ,null, null, false);
 
 
     @Test
@@ -13,11 +14,20 @@ public class testClass {
     }
 
     @Test
-    public void testDoesMikaelSayThis() {
+    public void testDoesMikaelHavePokemon() {
         Object pokemon = mikael.pokemon;
-        assertSame(null, mikael.pokemon);
+        assertSame(null, pokemon);
     }
 
+    @Test
+    public void testComparePokemonList() {
+        assertSame(olle.pokemonList, mikael.pokemonList);
+    }
+    @Test
+    public void testCompareTrainer() {
+        boolean compare = olle.trainer;
+        assertFalse(compare);
+    }
 
 
     // TODO: 2021-10-31 testa att läs skylt där en skylt inte finns
