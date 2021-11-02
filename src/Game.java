@@ -14,13 +14,13 @@ public class Game {
 
     public void init() {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
-                "\n There is a sign at the town centerpoint");
+                "\nThere is a sign at the town centerpoint");
         Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less. " +
                 "\nThere used to be a route heading east. However it has remained buried in rubble since the great earthquake in -06");
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams. " +
                 "\n There is a semi-broken sign on the ground but it looks readable.");
         Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. " +
-                "\n He is standing in the corner by six weird ball-shaped objects");
+                "\nHe is standing in the corner by six weird ball-shaped objects");
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
         Location roadBlock = new Location("Roadblock", "\n This road is blocked. You were not supposed to reach this area..");
 
@@ -105,8 +105,9 @@ public class Game {
         Humans player = new Humans(null, 0, myPokemon, null, true, null);
 
         Humans professorOak = new Humans("Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
-                " \n You can look at its individual stats by typing Check followed by its name. " +
-                "\n Choose one by typing Choose followed by its name!",
+                " \n Each one of these Pokémon has its own unique moves stats. " +
+                "\n You can look at its individual stats by typing 'Check' followed by its name. " +
+                "\n Choose one by typing 'Choose' followed by its name!",
                 0, null, null, false, null);
 
         oaksLab.setHuman(professorOak);
@@ -176,6 +177,9 @@ public class Game {
                 System.out.println("Read - Followed by whatever readable object is near you - 'Sign', for example");
                 System.out.println("Talk - Followed by the name of a person in your close proximity.");
                 System.out.println("Quit - Exit the game and do something completely different");
+                if (myPokemon != null){
+                    System.out.println("Now that you have a buddy by your side: \nCheck Buddy - Inspect your buddy");
+                }
             }
 
             if (action.equalsIgnoreCase("Go")) {
@@ -293,7 +297,7 @@ public class Game {
             }
             if (row == 0 && col == 1 && !trainer) {
                 col--;
-                System.out.println("Someone's voice: HEY!! \n Don't go in there without a Pokémon! That dude's a looney!");
+                System.out.println("Someone's voice: HEY!! \nDon't go in there without a Pokémon! That dude's a looney!");
             }
         }
         if (direction.equalsIgnoreCase("left")) {
@@ -323,7 +327,7 @@ public class Game {
                 System.out.println("Move 2: " + map[row][col].getPokemon().move2.attackName);
                 System.out.println("Move 3: " + map[row][col].getPokemon().move3.attackName);
             } catch (NullPointerException e) {
-                System.out.println("You can only check out Pokémon at Prof. Oak's lab in the south-east part of the world. The professor has all the answers");
+                System.out.println("You can only check out Pokémon at Prof. Oak's lab in the south-east part of the world. The professor has all the answers.");
             }
         }
         if (readStats.equalsIgnoreCase("Charmander")) {
@@ -441,8 +445,8 @@ public class Game {
                 String rivalSays = map[row][col].getHuman().message;
                 System.out.println("\n -" + rivalSays);
             } catch (NullPointerException e) {
-                System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it in the air around you.. " +
-                        "Which is strange, since he's not even here");
+                System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it" +
+                        " in the air around you.. \nWhich is strange, since he's not even here");
             }
         }
     }

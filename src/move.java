@@ -4,9 +4,9 @@ public class move {
     int damage;
     int attackBoost;
     int attackNerf;
-    String move1;
-    String move2;
-    String move;
+//    String move1;
+//    String move2;
+//    String move;
 
 
 
