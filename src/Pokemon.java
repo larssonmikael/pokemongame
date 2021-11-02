@@ -12,7 +12,6 @@ public class Pokemon {
     String name;
     int[] stats;
 
-    // Konstruktor för stats. Unika för varje Pokemon
     public String[] stats(int baseHP, int attackPower, int speed, int accuracy, String type, String name){
         this.baseHP = baseHP;
         this.attackPower = attackPower;
@@ -29,8 +28,6 @@ public class Pokemon {
     private int[] stats(int baseHP, int attackPower, int speed, int accuracy) {
         return stats;
     }
-
-    //Getters och setters för attacker
 
     public void setMove1 (move move1) {
         this.move1 = move1;
@@ -101,15 +98,13 @@ public class Pokemon {
         this.name = name;
     }
 
-
+//  Petting the pokemon increases its stats to a certain degree
     public int pet() {
         int maxSpeed = 19;
         if (speed <= maxSpeed) {
             baseHP = baseHP + 3;
             speed = speed + 1;
             System.out.println("You petted the Pokémon. It seems healthier.");
-//            Cap för att inte ge effekt efter 5 pets?
-//            System.out.println("You petted the Pokémon. Hmm.. It doesn't seem to care.");
             return baseHP + speed;
         } else {
             System.out.println("You petted the Pokémon. Hmm.. It seems unaffected?");

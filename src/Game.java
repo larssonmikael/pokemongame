@@ -25,10 +25,9 @@ public class Game {
         Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. " +
                 "\nHe is standing in the corner by six weird ball-shaped objects");
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
-        Location roadBlock = new Location("Roadblock", "\n This road is blocked. You were not supposed to reach this area..");
+        Location roadBlock = new Location("Roadblock", null);
 
         //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
-//      Gå till labbet, hämta en pokemon. Gå till rivalen och slåss
 
         map = new Location[][]{
                 {viridianCity, rivalsPlace},
@@ -38,21 +37,13 @@ public class Game {
         col = 0;
         trainer = false;
 
-
-//
-//        int pokemonParty = 0;
-//        boolean trainer = true;
-//        boolean chosenPokemon = false;
-//        Pokemon myPokemon = null;
-
-
+//      Create pokemon and moves
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
         Pokemon tentacool = new Pokemon();
         Pokemon bulbasaur = new Pokemon();
         Pokemon charmander = new Pokemon();
         Pokemon squirtle = new Pokemon();
-
 
         move tackle = new move("Tackle", "Normal", 10, 0, 0);
         move vineWhip = new move("Vine Whip", "Grass", 20, 0, 0);
@@ -61,42 +52,36 @@ public class Game {
         move growl = new move("Growl", "Normal", 0, 0, 20);
         move growth = new move("Growth", "Normal", 0, 20, 0);
 
-        // Given the different pokemon their individual movepool
+        // Given the pokemon unique movepools and stats
         bulbasaur.stats(83, 17, 14, 90, "Grass", "Bulbasaur");
         bulbasaur.setMove1(vineWhip);
         bulbasaur.setMove2(growl);
         bulbasaur.setMove3(growth);
-//        String[] bulbasaurMoves = new String[]{bulbasaur.move1.attackName, bulbasaur.move2.attackName, bulbasaur.move3.attackName};
 
         oddish.stats(85, 16, 15, 85, "Grass", "Oddish");
         oddish.setMove1(vineWhip);
         oddish.setMove2(tackle);
         oddish.setMove3(growl);
-//        String[] oddishMoves = new String[]{oddish.move1.attackName, oddish.move2.attackName, oddish.move3.attackName};
 
         tentacool.stats(93, 13, 15, 90, "Water", "Tentacool");
         tentacool.setMove1(waterGun);
         tentacool.setMove2(growl);
         tentacool.setMove3(growth);
-//        String[] tentacoolMoves = new String[]{tentacool.move1.attackName, tentacool.move2.attackName, tentacool.move3.attackName};
 
         growlithe.stats(70, 15, 15, 95, "Fire", "Growlithe");
         growlithe.setMove1(ember);
         growlithe.setMove2(tackle);
         growlithe.setMove3(growth);
-//        String[] growlitheMoves = new String[]{growlithe.move1.attackName, growlithe.move2.attackName, growlithe.move3.attackName};
 
         charmander.stats(74, 18, 16, 90, "Fire", "Charmander");
         charmander.setMove1(tackle);
         charmander.setMove2(ember);
         charmander.setMove3(growl);
-//        String[] charmanderMoves = new String[]{charmander.move1.attackName, charmander.move2.attackName, charmander.move3.attackName};
 
         squirtle.stats(80, 17, 16, 90, "Water", "Squirtle");
         squirtle.setMove1(waterGun);
         squirtle.setMove2(tackle);
         squirtle.setMove3(growl);
-//        String[] squirtleMoves = new String[]{squirtle.move1.attackName, squirtle.move2.attackName, squirtle.move3.attackName};
 
         Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
         Sign viridianSign = new Sign("Be cautious of the weirdo that lives east of here. Rumor has it he fights anyone who enters his room");
@@ -106,7 +91,6 @@ public class Game {
         Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalsPlace.getPokemon(), null, true);
         rivalsPlace.setHuman(rival);
         rival.pokemon = rival.getPokemon();
-
 
         Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 " \n Each one of these Pokémon has its own unique moves stats. " +
@@ -118,7 +102,6 @@ public class Game {
         oaksLab.setHuman(professorOak);
         String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
         Pokemon [] listOfPokemon = new Pokemon[] {bulbasaur, charmander, squirtle, growlithe, oddish, tentacool};
-//        professorOak.setPokemonArray(listOfPokemon);
         professorOak.setPokemonList(oakPokemonList);
 
         oaksLab.setPokemon(bulbasaur);
@@ -127,8 +110,6 @@ public class Game {
         oaksLab.setPokemon4(oddish);
         oaksLab.setPokemon5(growlithe);
         oaksLab.setPokemon6(tentacool);
-
-        // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one
     }
 
     //    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
@@ -143,6 +124,7 @@ public class Game {
             if (myPokemon != null) {
                 System.out.println(myPokemon.getName() + " is keeping close to you. You feel a bit less alone.");
             }
+//          Gather user input as two strings separated by "space"
             String[] commandParts = readInput();
             String action = commandParts[0];
 
@@ -157,7 +139,6 @@ public class Game {
                     System.out.println("Pet Buddy - Shower your buddy with love and affection.");
                 }
             }
-
             if (action.equalsIgnoreCase("Go")) {
                 if (commandParts.length == 2) {
                     readDirection(commandParts[1]);
@@ -179,6 +160,7 @@ public class Game {
                     checkMyPokemon(commandParts[1]);
                 }
             }
+//          Choose a pokemon and prevent user from switching pokemon once the choice has been made
             if (action.equalsIgnoreCase("Choose")) {
                 if (commandParts.length == 2 && row == 2 && col == 1  && myPokemon == null) {
                     inChoosePokemon(commandParts[1]);

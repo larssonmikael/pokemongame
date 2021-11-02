@@ -36,7 +36,6 @@ public class move {
         return this.attackNerf;
     }
 
-
     public move(String attackName, String type, int damage, int attackBoost, int attackNerf){
         this.attackName = attackName;
         this.damage = damage;
@@ -44,12 +43,4 @@ public class move {
         this.attackNerf = attackNerf;
         this.type = type;
     }
-
-
-//    public String[] setMoves;{
-//        this.move = move;
-//    }
-//    public String getMoves(String move1, String move2){
-//        return this.move1 + this.move2;
-//    }
 }
