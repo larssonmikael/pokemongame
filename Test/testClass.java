@@ -3,8 +3,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class testClass {
-    Humans mikael = new Humans("Mikael", "That's my name", null, null, true);
-    Humans olle = new Humans("Olle", null ,null, null, false);
+    Pokemon gengar = new Pokemon();
+    Pokemon nidorino = new Pokemon();
+    Humans mikael = new Humans("Mikael", "That's my name", nidorino, null, true);
+    Humans olle = new Humans("Olle", null ,gengar, null, false);
 
 
     @Test
@@ -12,13 +14,11 @@ public class testClass {
         boolean trainer = mikael.trainer;
         assertTrue(trainer);
     }
-
     @Test
     public void testDoesMikaelHavePokemon() {
         Object pokemon = mikael.pokemon;
-        assertSame(null, pokemon);
+        assertSame(nidorino, pokemon);
     }
-
     @Test
     public void testComparePokemonList() {
         assertSame(olle.pokemonList, mikael.pokemonList);
@@ -27,6 +27,10 @@ public class testClass {
     public void testCompareTrainer() {
         boolean compare = olle.trainer;
         assertFalse(compare);
+    }
+    @Test
+    public void testComparePokemon() {
+        assertNotSame(gengar, mikael.pokemon);
     }
 
 
