@@ -3,12 +3,11 @@ public class Humans {
     String name;
     String message;
     Pokemon pokemon;
-    Pokemon pokemon2;
     boolean trainer;
-    String [] pokemonList;
+    String[] pokemonList;
 
 
-    public Humans(String name, String message, Pokemon pokemon, String[] pokemonList, boolean trainer){
+    public Humans(String name, String message, Pokemon pokemon, String[] pokemonList, boolean trainer) {
         this.message = message;
         this.pokemon = pokemon;
         this.trainer = trainer;
@@ -28,6 +27,7 @@ public class Humans {
     public String getMessage() {
         return message;
     }
+
     public void setMessage(String message) {
         this.message = message;
     }
@@ -40,19 +40,12 @@ public class Humans {
         this.pokemon = pokemon;
     }
 
-    public String[] getPokemonList () {
+    public String[] getPokemonList() {
         return pokemonList;
     }
 
     public void setPokemonList(String[] pokemonList) {
         this.pokemonList = pokemonList;
     }
-
-    public boolean isTrainer() {
-        return trainer;
-    }
-
-    public void setTrainer(boolean trainer) {
-        this.trainer = trainer;
-    }
 }
+

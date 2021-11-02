@@ -35,19 +35,6 @@ public class Location {
         return description;
     }
 
-
-
-    public String signToString(){
-            return sign.message;
-    }
-    public String talkToString() {
-        try {
-            return human.message;
-        } catch (NullPointerException e){
-            System.out.println("However much you talk when you're alone, nobody will answer but you" + "\n" + "- The Dalai Lama");
-        }
-        return "";
-    }
     public String getSignMessage() {
         return sign.message;
     }
@@ -94,12 +81,4 @@ public class Location {
     public Humans getHuman() {
         return human;
     }
-
-
-
-
-//    public String [] getMoves(String[] bulbasaurMoves) {
-//        return bulbasaurMoves;
-//    }
-
 }

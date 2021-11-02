@@ -12,8 +12,10 @@ public class Game {
     boolean trainer;
     boolean chosenPokemon = false;
     Pokemon myPokemon = null;
+    Pokemon rivalPokemon = null;
     File runAway = new File("SFX/He_ran_away.wav");
     File petSound = new File("SFX/Pet_Sound.wav");
+    File hey = new File("SFX/Hey.wav");
 
     public void init() {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
@@ -27,8 +29,6 @@ public class Game {
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
         Location roadBlock = new Location("Roadblock", null);
 
-        //        Lägg till ball musik för när man är i vissa rum. Rival's place comes to mind
-
         map = new Location[][]{
                 {viridianCity, rivalsPlace},
                 {routeOne, roadBlock},
@@ -36,8 +36,9 @@ public class Game {
         row = 2;
         col = 0;
         trainer = false;
+        myPokemon = null;
 
-//      Create pokemon and moves
+//      Create pokemon, moves and stats
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
         Pokemon tentacool = new Pokemon();
@@ -52,7 +53,6 @@ public class Game {
         move growl = new move("Growl", "Normal", 0, 0, 20);
         move growth = new move("Growth", "Normal", 0, 20, 0);
 
-        // Given the pokemon unique movepools and stats
         bulbasaur.stats(83, 17, 14, 90, "Grass", "Bulbasaur");
         bulbasaur.setMove1(vineWhip);
         bulbasaur.setMove2(growl);
@@ -88,20 +88,18 @@ public class Game {
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-        Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalsPlace.getPokemon(), null, true);
+        Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalPokemon, null, true);
         rivalsPlace.setHuman(rival);
-        rival.pokemon = rival.getPokemon();
 
         Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
-                " \n Each one of these Pokémon has its own unique moves stats. " +
+                "\n Each one of these Pokémon has its own unique moves stats. " +
                 "\n You can look at its individual stats by typing 'Check' followed by its name. " +
                 "\n Choose one by typing 'Choose' followed by its name!" +
                 "\n Choose with care. These creatures tend to stick to their owners.",
                  null, null, false);
 
         oaksLab.setHuman(professorOak);
-        String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
-        Pokemon [] listOfPokemon = new Pokemon[] {bulbasaur, charmander, squirtle, growlithe, oddish, tentacool};
+        String [] oakPokemonList = new String[] {bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
         professorOak.setPokemonList(oakPokemonList);
 
         oaksLab.setPokemon(bulbasaur);
@@ -113,7 +111,6 @@ public class Game {
     }
 
     //    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
-//    Får inte gå till route 1 utan pokemon från oak
     public void runGame() {
 
         boolean running = true;
@@ -129,7 +126,7 @@ public class Game {
             String action = commandParts[0];
 
             if (action.equalsIgnoreCase("Help")) {
-                System.out.println("\nYour available commands are: " + "\n" + "Help (obviously)");
+                System.out.println("\nYour available commands are: \nHelp (obviously)");
                 System.out.println("Go - Which is followed by 'up', 'down', 'left' or 'right'.");
                 System.out.println("Read - Followed by whatever readable object is near you - 'Sign', for example");
                 System.out.println("Talk - Followed by the name of a person in your close proximity.");
@@ -191,36 +188,42 @@ public class Game {
             myPokemon = map[row][col].getPokemon();
             trainer = true;
             chosenPokemon = true;
+            rivalPokemon = (map[2][1].getPokemon5());
             System.out.println("You chose Bulbasaur as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Charmander")) {
             myPokemon = map[row][col].getPokemon2();
             trainer = true;
             chosenPokemon = true;
+            rivalPokemon = (map[2][1].getPokemon6());
             System.out.println("You chose Charmander as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Squirtle")) {
             myPokemon = map[row][col].getPokemon3();
             trainer = true;
             chosenPokemon = true;
+            rivalPokemon = (map[2][1].getPokemon4());
             System.out.println("You chose Squirtle as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Oddish")) {
             myPokemon = map[row][col].getPokemon4();
             trainer = true;
             chosenPokemon = true;
+            rivalPokemon = (map[2][1].getPokemon2());
             System.out.println("You chose Oddish as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Growlithe")) {
             myPokemon = map[row][col].getPokemon5();
             trainer = true;
             chosenPokemon = true;
+            rivalPokemon = (map[2][1].getPokemon3());
             System.out.println("You chose Growlithe as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Tentacool")) {
             myPokemon = map[row][col].getPokemon6();
             trainer = true;
             chosenPokemon = true;
+            rivalPokemon = (map[2][1].getPokemon());
             System.out.println("You chose Tentacool as your companion!");
         }
     }
@@ -259,13 +262,17 @@ public class Game {
             }
             if (row == 0 && col == 1 && !trainer) {
                 col--;
+                playSfx(hey);
                 System.out.println("Someone's voice: HEY!! \nDon't go in there without a Pokémon! That dude's a looney!");
             }
             if (row == 0 && col == 1 && trainer) {
                 System.out.println("-" + map[0][1].getHuman().message);
-                System.out.println("You've encountered " + map[0][1].getHuman().name + "\nBattle (Not yet implemented) or Run?");
+                System.out.println("You've encountered " + map[0][1].getHuman().name + "\nBattle or Run?");
                 boolean run = false;
                 while (!run) {
+                    if (input.nextLine().equalsIgnoreCase("Battle")) {
+                        System.out.println("Unfortunately you can't battle at this point. Blame the developer.");
+                    }
                     if (input.nextLine().equalsIgnoreCase("Run")) {
                         run = true;
                         playSfx(runAway);
@@ -416,9 +423,12 @@ public class Game {
                 String rivalSays = map[row][col].getHuman().message;
                 System.out.println("\n -" + rivalSays);
             } catch (NullPointerException e) {
-                System.out.println("\n" + "The taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it" +
-                        " in the air around you.. \nWhich is strange, since he's not even here");
+                System.out.println("\nThe taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it " +
+                        "in the air around you.. \nWhich is strange, since he's not even here. Am i losing it?");
             }
+        }
+        if (talkTo.equalsIgnoreCase("Myself")) {
+            System.out.println("Thoughts are the shadows of our feelings - always darker, emptier and simpler.");
         }
     }
     private void checkMyPokemon(String checkBuddyStats) {
