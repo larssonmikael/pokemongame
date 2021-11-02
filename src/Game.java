@@ -21,11 +21,11 @@ public class Game {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
                 "\nThere is a sign at the town centerpoint");
         Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less. " +
-                "\nThere used to be a route heading east. However it has remained buried in rubble since the great earthquake in -06");
+                "\nThere used to be a route heading east. However it has remained buried in rubble since the great earthquake in -06.");
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams. " +
                 "\nThere is a semi-broken sign on the ground but it looks readable.");
-        Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. " +
-                "\nHe is standing in the corner by six weird ball-shaped objects");
+        Location oaksLab = new Location("Prof. Oak's Lab", "Professor Oak works here. He's a close family friend. " +
+                "\nHe is standing in the back of the lap next to a table with six weird ball-shaped objects on it.");
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
         Location roadBlock = new Location("Roadblock", null);
 
@@ -178,11 +178,13 @@ public class Game {
             }
         }
     }
+
     private String[] readInput() {
         System.out.println("\n" + "What now?");
         String command = input.nextLine();
         return command.split(" ");
     }
+
     private void inChoosePokemon(String iChooseYou) {
         if (iChooseYou.equalsIgnoreCase("Bulbasaur")) {
             myPokemon = map[row][col].getPokemon();
@@ -227,6 +229,7 @@ public class Game {
             System.out.println("You chose Tentacool as your companion!");
         }
     }
+
     private void readDirection(String direction) {
         if (direction.equalsIgnoreCase("up")) {
             row--;
@@ -296,6 +299,7 @@ public class Game {
             }
         }
     }
+
     private void inPokemonStats(String readStats) {
         if (readStats.equalsIgnoreCase("Bulbasaur")) {
             try {
@@ -396,6 +400,7 @@ public class Game {
             }
         }
     }
+
     private void inRead(String readSign) {
         if (readSign.equalsIgnoreCase("Sign")) {
             try {
@@ -406,6 +411,7 @@ public class Game {
             }
         }
     }
+
     private void inTalk(String talkTo) {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
@@ -431,6 +437,7 @@ public class Game {
             System.out.println("Thoughts are the shadows of our feelings - always darker, emptier and simpler.");
         }
     }
+
     private void checkMyPokemon(String checkBuddyStats) {
         if (checkBuddyStats.equalsIgnoreCase("Buddy"))  {
             try {
@@ -449,12 +456,14 @@ public class Game {
             }
         }
     }
+
     private void inPetBuddy(String petBuddy) {
         if (petBuddy.equalsIgnoreCase("Buddy")) {
             myPokemon.pet();
             playSfx(petSound);
         }
     }
+
     private void playSfx(File sound) {
         try {
             Clip clip = AudioSystem.getClip();
@@ -466,6 +475,7 @@ public class Game {
         }
 
     }
+
     private void startBattle(Pokemon myPokemon, Pokemon pokemon){
 
         boolean battle = true;

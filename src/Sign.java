@@ -1,3 +1,4 @@
+
 public class Sign {
 
     public String message;
@@ -5,6 +6,7 @@ public class Sign {
     public Sign(String inMessage){
         message = inMessage;
     }
+
     public String getMessage(String message) {
         return message;
     }
