@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -34,6 +35,7 @@ public class Game {
         row = 2;
         col = 0;
         trainer = false;
+//        File runAway = new File();
 
 //
 //        int pokemonParty = 0;
