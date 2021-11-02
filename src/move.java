@@ -4,11 +4,6 @@ public class move {
     int damage;
     int attackBoost;
     int attackNerf;
-//    String move1;
-//    String move2;
-//    String move;
-
-
 
     public void setAttackName(String attackName){
         this.attackName = attackName;

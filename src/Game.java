@@ -1,8 +1,6 @@
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -11,7 +9,6 @@ public class Game {
     int col;
     Location[][] map;
     Scanner input = new Scanner(System.in);
-    int pokemonParty;
     boolean trainer;
     boolean chosenPokemon = false;
     Pokemon myPokemon = null;
@@ -212,42 +209,36 @@ public class Game {
             myPokemon = map[row][col].getPokemon();
             trainer = true;
             chosenPokemon = true;
-            pokemonParty ++;
             System.out.println("You chose Bulbasaur as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Charmander")) {
             myPokemon = map[row][col].getPokemon2();
             trainer = true;
             chosenPokemon = true;
-            pokemonParty++;
             System.out.println("You chose Charmander as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Squirtle")) {
             myPokemon = map[row][col].getPokemon3();
             trainer = true;
             chosenPokemon = true;
-            pokemonParty++;
             System.out.println("You chose Squirtle as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Oddish")) {
             myPokemon = map[row][col].getPokemon4();
             trainer = true;
             chosenPokemon = true;
-            pokemonParty++;
             System.out.println("You chose Oddish as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Growlithe")) {
             myPokemon = map[row][col].getPokemon5();
             trainer = true;
             chosenPokemon = true;
-            pokemonParty++;
             System.out.println("You chose Growlithe as your companion!");
         }
         if (iChooseYou.equalsIgnoreCase("Tentacool")) {
             myPokemon = map[row][col].getPokemon6();
             trainer = true;
             chosenPokemon = true;
-            pokemonParty++;
             System.out.println("You chose Tentacool as your companion!");
         }
     }
@@ -297,7 +288,8 @@ public class Game {
                         run = true;
                         playSfx(runAway);
                         System.out.println("You ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
-                        map[row][col] = map[2][0];
+                        row = 2;
+                        col = 0;
                     } else
                         System.out.println("You gotta choose. It's now or never. " + map[0][1].getHuman().name + " sure isn't going anywhere.");
                 }

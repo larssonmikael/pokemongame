@@ -1,4 +1,3 @@
-import java.util.stream.Stream;
 
 public class Location {
 
@@ -17,6 +16,12 @@ public class Location {
         this.name = name;
         this.description = description;
     }
+    public String locationToString() {
+        String location = "\nYou are in " + getName() + ". ";
+        location = location + getDescription();
+        return location;
+    }
+
     public void setName(String name){
         this.name = name;
     }
@@ -30,19 +35,8 @@ public class Location {
         return description;
     }
 
-    public String locationToString() {
-        String location = "\nYou are in " + getName() + ". ";
-        location = location + getDescription();
-        return location;
-    }
-//    public String statsToString() {
-//        String stats = "\n Hp:" + getPokemon().getBaseHP();
-//        stats = stats + "\n Attack:" + getPokemon().getAttackPower();
-//        stats = stats + "\n Accuracy:" + getPokemon().getAccuracy();
-//        stats = stats + "\n Speed:" + getPokemon().getSpeed();
-//        stats = stats + "\n Type:" + getPokemon().getType();
-//        return stats;
-//    }
+
+
     public String signToString(){
             return sign.message;
     }
@@ -54,7 +48,6 @@ public class Location {
         }
         return "";
     }
-
     public String getSignMessage() {
         return sign.message;
     }
@@ -62,19 +55,6 @@ public class Location {
     public void setSign(Sign sign) {
         this.sign = sign;
     }
-
-    public Pokemon getPokemon() {
-        return pokemon;
-    }
-    public Pokemon getPokemon2() {return pokemon2;}
-    public Pokemon getPokemon3() {
-        return pokemon3;
-    }
-    public Pokemon getPokemon4() {return pokemon4;}
-    public Pokemon getPokemon5() {
-        return pokemon5;
-    }
-    public Pokemon getPokemon6() {return pokemon6;}
 
     public void setPokemon (Pokemon pokemon) {
         this.pokemon = pokemon;
@@ -95,11 +75,22 @@ public class Location {
         this.pokemon6 = pokemon6;
     }
 
+    public Pokemon getPokemon() {
+        return pokemon;
+    }
+    public Pokemon getPokemon2() {return pokemon2;}
+    public Pokemon getPokemon3() {
+        return pokemon3;
+    }
+    public Pokemon getPokemon4() {return pokemon4;}
+    public Pokemon getPokemon5() {
+        return pokemon5;
+    }
+    public Pokemon getPokemon6() {return pokemon6;}
 
     public void setHuman(Humans human) {
         this.human = human;
     }
-
     public Humans getHuman() {
         return human;
     }
