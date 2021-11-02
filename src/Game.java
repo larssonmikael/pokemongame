@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.NotNull;
+
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
@@ -411,7 +413,7 @@ public class Game {
         }
     }
 
-    private void inTalk(String talkTo) {
+    private void inTalk(@NotNull String talkTo) {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
                 String oakSays = map[row][col].getHuman().message;
@@ -435,7 +437,7 @@ public class Game {
         }
     }
 
-    private void checkMyPokemon(String checkBuddyStats) {
+    private void checkMyPokemon(@NotNull String checkBuddyStats) {
         if (checkBuddyStats.equalsIgnoreCase("Buddy"))  {
             try {
                 System.out.println("Name: " + myPokemon.getName());
@@ -470,7 +472,6 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void startBattle(Pokemon myPokemon, Pokemon pokemon){
