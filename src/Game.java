@@ -18,7 +18,7 @@ public class Game {
         Location routeOne = new Location("Route One", "A route from one town to another. Nothing more, nothing less. " +
                 "\nThere used to be a route heading east. However it has remained buried in rubble since the great earthquake in -06");
         Location viridianCity = new Location("Viridian City", "A city built on shattered visions and dreams. " +
-                "\n There is a semi-broken sign on the ground but it looks readable.");
+                "\nThere is a semi-broken sign on the ground but it looks readable.");
         Location oaksLab = new Location("Prof. Oak's Lab", "\nProfessor Oak works here. He's a close family friend. " +
                 "\nHe is standing in the corner by six weird ball-shaped objects");
         Location rivalsPlace = new Location("Rival's place", "\nYour rival lives here. Stay alert!");
@@ -99,18 +99,17 @@ public class Game {
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-        Humans rival = new Humans("Rival","You got some nerve coming here. You're gonna get it now!", 1, rivalsPlace.getPokemon(), null, true, null);
+        Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalsPlace.getPokemon(), null, true);
         rivalsPlace.setHuman(rival);
         rival.pokemon = rival.getPokemon();
 
-//        Humans player = new Humans(null, 0, myPokemon, null, true, null);
 
         Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 " \n Each one of these Pokémon has its own unique moves stats. " +
                 "\n You can look at its individual stats by typing 'Check' followed by its name. " +
                 "\n Choose one by typing 'Choose' followed by its name!" +
                 "\n Choose with care. These creatures tend to stick to their owners.",
-                0, null, null, false, null);
+                 null, null, false);
 
         oaksLab.setHuman(professorOak);
         String [] oakPokemonList = new String[]{bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
@@ -125,35 +124,7 @@ public class Game {
         oaksLab.setPokemon5(growlithe);
         oaksLab.setPokemon6(tentacool);
 
-
-//        if (professorOak.pokemonParty == 0) {
-//            chosenPokemon = true;
-//        }
-
         // TODO: 2021-10-29 Add pokemon to oaks lab, print its stats on command. Be able to carry one
-
-
-//          Vad ska vi kunna göra?
-//          Gå, läsa, prata,
-
-
-//        tentacool.pet();
-//        System.out.println(tentacool.moves);
-//        growlithe.attack();
-//        oddish.attack();
-//        System.out.println(oddish.type);
-//        System.out.println(bulbasaur.move1.type);
-//        System.out.println(tentacool.move2.attackName);
-//        System.out.println(squirtle.move3.attackName + " deals " + squirtle.move3.damage + " damage." );
-//
-//
-//        System.out.println();
-//        System.out.println(Arrays.toString(squirtleMoves));
-//        System.out.println(Arrays.toString(charmanderMoves));
-//        System.out.println(Arrays.toString(bulbasaurMoves));
-//        System.out.println(Arrays.toString(oddishMoves));
-//        System.out.println(Arrays.toString(tentacoolMoves));
-//        System.out.println(Arrays.toString(growlitheMoves));
     }
 
     //    Gå till oak. Välj en pokemon. Dra iväg till rivals place och slåss.
@@ -230,8 +201,6 @@ public class Game {
         System.out.println("You've engaged in a battle!");
 
         while (battle){
-
-
 
         }
 

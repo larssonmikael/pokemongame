@@ -2,20 +2,18 @@ public class Humans {
 
     String name;
     String message;
-    int pokemonParty;
     Pokemon pokemon;
     Pokemon pokemon2;
     boolean trainer;
     String [] pokemonList;
-    Pokemon [] pokemonArray;
 
-    public Humans(String name, String message, int pokemonParty, Pokemon pokemon, String[] pokemonList, boolean trainer, Pokemon[] pokemonArray){
+
+    public Humans(String name, String message, Pokemon pokemon, String[] pokemonList, boolean trainer){
         this.message = message;
-        this.pokemonParty = pokemonParty;
         this.pokemon = pokemon;
         this.trainer = trainer;
         this.pokemonList = pokemonList;
-        this.pokemonArray = pokemonArray;
+
         this.name = name;
     }
 
@@ -32,14 +30,6 @@ public class Humans {
     }
     public void setMessage(String message) {
         this.message = message;
-    }
-
-    public int getPokemonParty() {
-        return pokemonParty;
-    }
-
-    public void setPokemonParty(int pokemonParty) {
-        this.pokemonParty = pokemonParty;
     }
 
     public Pokemon getPokemon() {
@@ -65,13 +55,4 @@ public class Humans {
     public void setTrainer(boolean trainer) {
         this.trainer = trainer;
     }
-
-    public Pokemon[] getPokemonArray(Pokemon pokemon) {
-        return pokemonArray;
-    }
-
-    public void setPokemonArray(Pokemon[] pokemonArray) {
-        this.pokemonArray = pokemonArray;
-    }
-
 }
