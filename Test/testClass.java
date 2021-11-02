@@ -12,6 +12,12 @@ public class testClass {
         assertTrue(trainer);
     }
 
+    @Test
+    public void testDoesMikaelSayThis() {
+        Object pokemon = mikael.pokemon;
+        assertSame(null, mikael.pokemon);
+    }
+
 
 
     // TODO: 2021-10-31 testa att läs skylt där en skylt inte finns
