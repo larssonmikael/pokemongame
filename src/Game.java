@@ -1,3 +1,6 @@
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,6 +15,7 @@ public class Game {
     boolean trainer;
     boolean chosenPokemon = false;
     Pokemon myPokemon = null;
+    File runAway = new File("SFX/He_ran_away.wav");
 
     public void init() {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
@@ -35,7 +39,7 @@ public class Game {
         row = 2;
         col = 0;
         trainer = false;
-//        File runAway = new File();
+
 
 //
 //        int pokemonParty = 0;
@@ -197,16 +201,6 @@ public class Game {
             }
         }
     }
-    public void startBattle(Pokemon myPokemon, Pokemon pokemon){
-
-        boolean battle = true;
-        System.out.println("You've engaged in a battle!");
-
-        while (battle){
-
-        }
-
-    }
     private String[] readInput() {
         System.out.println("\n" + "What now?");
         String command = input.nextLine();
@@ -296,9 +290,15 @@ public class Game {
             if (row == 0 && col == 1 && trainer) {
                 System.out.println("-" + map[0][1].getHuman().message);
                 System.out.println("You've encountered " + map[0][1].getHuman().name + "\nBattle (Not yet implemented) or Run?");
-                if (input.nextLine().equalsIgnoreCase("Run")) {
-                    System.out.println("You ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
-                    map[row][col] = map[2][0];
+                boolean run = false;
+                while (!run) {
+                    if (input.nextLine().equalsIgnoreCase("Run")) {
+                        run = true;
+                        playSfx(runAway);
+                        System.out.println("You ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
+                        map[row][col] = map[2][0];
+                    } else
+                        System.out.println("You gotta choose. It's now or never. " + map[0][1].getHuman().name + " sure isn't going anywhere.");
                 }
             }
         }
@@ -468,5 +468,26 @@ public class Game {
         if (petBuddy.equalsIgnoreCase("Buddy")) {
             myPokemon.pet();
         }
+    }
+    private void playSfx(File sound) {
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.open(AudioSystem.getAudioInputStream(sound));
+            clip.start();
+            Thread.sleep(clip.getMicrosecondLength()/1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+    private void startBattle(Pokemon myPokemon, Pokemon pokemon){
+
+        boolean battle = true;
+        System.out.println("You've engaged in a battle!");
+
+        while (battle){
+
+        }
+
     }
 }
