@@ -4,6 +4,7 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Game {
@@ -92,6 +93,7 @@ public class Game {
 
         Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalPokemon, null, true);
         rivalsPlace.setHuman(rival);
+
 
         Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 "\n Each one of these Pokémon has its own unique moves stats. " +
@@ -271,20 +273,20 @@ public class Game {
             }
             if (row == 0 && col == 1 && trainer) {
                 System.out.println("-" + map[0][1].getHuman().message);
-                System.out.println("You've encountered " + map[0][1].getHuman().name + "\nBattle or Run?");
+                System.out.println("\nYou've encountered " + map[0][1].getHuman().name + "\nTheir Pokémon is " + rivalPokemon.name +
+                        "\nYour " + myPokemon.name + " seems eager to battle" + "\nBattle or Run?");
                 boolean run = false;
                 while (!run) {
-                    if (input.nextLine().equalsIgnoreCase("Battle")) {
-                        System.out.println("Unfortunately you can't battle at this point. Blame the developer.");
+                    switch (input.nextLine().toLowerCase(Locale.ROOT)) {
+                        case "battle" -> System.out.println("Unfortunately you can't battle at this point. Blame the developer.");
+                        case "run" -> {
+                            run = true;
+                            playSfx(runAway);
+                            System.out.println("\nYou ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
+                            row = 2;
+                            col = 0;
+                        }
                     }
-                    if (input.nextLine().equalsIgnoreCase("Run")) {
-                        run = true;
-                        playSfx(runAway);
-                        System.out.println("You ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
-                        row = 2;
-                        col = 0;
-                    } else
-                        System.out.println("You gotta choose. It's now or never. " + map[0][1].getHuman().name + " sure isn't going anywhere.");
                 }
             }
         }
@@ -413,7 +415,7 @@ public class Game {
         }
     }
 
-    private void inTalk(@NotNull String talkTo) {
+    private void inTalk(String talkTo) {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
                 String oakSays = map[row][col].getHuman().message;
