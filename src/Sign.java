@@ -6,7 +6,7 @@ public class Sign {
         message = inMessage;
     }
 
-    public String getMessage(String message) {
+    public String getMessage() {
         return message;
     }
     public void setMessage(String message) {
