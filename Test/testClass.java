@@ -10,6 +10,7 @@ public class testClass {
     Humans mikael = new Humans("Mikael", "That's my name", nidorino, null, true);
     Humans olle = new Humans("Olle", null ,gengar, null, false);
 
+
     @Test
     public void testIsMikaelTrainer() {
         boolean trainer = mikael.trainer;

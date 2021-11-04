@@ -18,6 +18,7 @@ public class Game {
     File petSound = new File("SFX/Pet_Sound.wav");
     File hey = new File("SFX/Hey.wav");
 
+//  Ititializating game
     public void init() {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
                 "\nThere is a sign at the town centerpoint");
@@ -39,7 +40,6 @@ public class Game {
         trainer = false;
         myPokemon = null;
 
-//      Create Pokémon, moves and stats
         Pokemon oddish = new Pokemon();
         Pokemon growlithe = new Pokemon();
         Pokemon tentacool = new Pokemon();
@@ -126,6 +126,7 @@ public class Game {
             String[] commandParts = readInput();
             String action = commandParts[0];
 
+//          The available actions
             if (action.equalsIgnoreCase("Help")) {
                 System.out.println("\nYour available commands are: \nHelp (obviously)");
                 System.out.println("Go - Which is followed by 'up', 'down', 'left' or 'right'.");
@@ -305,6 +306,7 @@ public class Game {
         }
     }
 
+//  Print stats and moves for each Pokémon in the lab
     private void inPokemonStats(String readStats) {
         if (readStats.equalsIgnoreCase("Bulbasaur")) {
             try {
@@ -420,16 +422,16 @@ public class Game {
     private void inTalk(String talkTo) {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
-                String oakSays = map[row][col].getHuman().message;
+                String oakSays = map[row][col].getHuman().getMessage();
                 System.out.println("\n -" + oakSays + "\n");
-                    System.out.println(Arrays.deepToString(map[row][col].getHuman().pokemonList));
+                    System.out.println(Arrays.deepToString(map[row][col].getHuman().getPokemonList()));
             } catch (NullPointerException e) {
                 System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?");
             }
         }
         if (talkTo.equalsIgnoreCase("Rival")) {
             try {
-                String rivalSays = map[row][col].getHuman().message;
+                String rivalSays = map[row][col].getHuman().getMessage();
                 System.out.println("\n -" + rivalSays);
             } catch (NullPointerException e) {
                 System.out.println("\nThe taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it " +
@@ -441,6 +443,7 @@ public class Game {
         }
     }
 
+//  Print stats and moves for your buddy
     private void checkMyPokemon(String checkBuddyStats) {
         if (checkBuddyStats.equalsIgnoreCase("Buddy"))  {
             try {
@@ -460,6 +463,7 @@ public class Game {
         }
     }
 
+//  Calls the pet method which increases some of the buddy Pokémon's stats
     private void inPetBuddy(String petBuddy) {
         if (petBuddy.equalsIgnoreCase("Buddy")) {
             myPokemon.pet();
