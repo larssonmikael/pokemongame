@@ -9,7 +9,6 @@ public class Pokemon {
     int accuracy;
     String type;
     String name;
-    int[] stats;
 
     public String[] stats(int baseHP, int attackPower, int speed, int accuracy, String type, String name){
         this.baseHP = baseHP;
@@ -19,14 +18,6 @@ public class Pokemon {
         this.type = type;
         this.name = name;
         return new String[0];
-    }
-
-    public int [] getStats(int baseHP, int attackPower, int speed, int accuracy){
-        return stats(getBaseHP(), getAttackPower(), getSpeed(), getAccuracy());
-    }
-
-    private int[] stats(int baseHP, int attackPower, int speed, int accuracy) {
-        return stats;
     }
 
     public move getMove1 () {
