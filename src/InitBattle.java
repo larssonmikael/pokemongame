@@ -7,7 +7,7 @@ public class InitBattle {
     }
 
 
-    public static void sendOut(String Pokemon) {
+    public static void sendOut(Pokemon Pokemon) {
         System.out.println("You sent out " + Pokemon);
     }
 }
