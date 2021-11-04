@@ -191,6 +191,7 @@ public class Game {
         return command.split(" ");
     }
 
+//  Choose a Pokémon
     private void inChoosePokemon(String iChooseYou) {
         if (iChooseYou.equalsIgnoreCase("Bulbasaur")) {
             myPokemon = map[row][col].getPokemon();
@@ -419,6 +420,7 @@ public class Game {
         }
     }
 
+//  Talk to different humans
     private void inTalk(String talkTo) {
         if (talkTo.equalsIgnoreCase("Oak")) {
             try {
