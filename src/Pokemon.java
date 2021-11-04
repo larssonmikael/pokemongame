@@ -1,4 +1,3 @@
-
 public class Pokemon {
 
     int baseHP;

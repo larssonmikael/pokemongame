@@ -1,4 +1,3 @@
-
 public class move {
 
     String attackName;

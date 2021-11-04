@@ -1,5 +1,3 @@
-import org.jetbrains.annotations.NotNull;
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
@@ -87,13 +85,12 @@ public class Game {
         squirtle.setMove3(growl);
 
         Sign palletSign = new Sign("The colorful Pallet Town was founded in 1991 by Professor Oak.");
-        Sign viridianSign = new Sign("Be cautious of the weirdo that lives east of here. Rumor has it he fights anyone who enters his room");
+        Sign viridianSign = new Sign("Be cautious of the nutjob that lives east of here. Rumor has it he fights anyone who enters his house");
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
         Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalPokemon, null, true);
         rivalsPlace.setHuman(rival);
-
 
         Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
                 "\n Each one of these Pokémon has its own unique moves stats. " +
@@ -120,11 +117,12 @@ public class Game {
         System.out.println("\nThis is some kind of Pokémon-based adventure. Take it for what it is." + "\n");
         System.out.println("Type help to see a list of available actions.");
         while (running) {
+
+//          Print location and buddy pokemon if one is chosen
             System.out.println(map[row][col].locationToString());
             if (myPokemon != null) {
                 System.out.println(myPokemon.getName() + " is keeping close to you. You feel a bit less alone.");
             }
-//          Gather user input as two strings separated by "space"
             String[] commandParts = readInput();
             String action = commandParts[0];
 
@@ -155,11 +153,15 @@ public class Game {
                 }
             }
             if (action.equalsIgnoreCase("Check")) {
-                if (commandParts.length == 2 ) {
-                    inPokemonStats(commandParts[1]);
-                    checkMyPokemon(commandParts[1]);
+                try {
+                    if (commandParts.length == 2 ) {
+                        inPokemonStats(commandParts[1]);
+                        checkMyPokemon(commandParts[1]);
+                    }
+                } catch (NullPointerException e) {
                 }
             }
+
 //          Choose a Pokémon and prevent user from switching Pokémon once the choice has been made
             if (action.equalsIgnoreCase("Choose")) {
                 if (commandParts.length == 2 && row == 2 && col == 1  && myPokemon == null) {
@@ -237,7 +239,7 @@ public class Game {
         if (direction.equalsIgnoreCase("up")) {
             row--;
             if (row < 0) {
-                System.out.println("Stay on the map");
+                System.out.println("Believe it or not, you've reached the edge of the world");
                 row++;
             }
             if (row == 1 && col == 1) {
@@ -248,7 +250,7 @@ public class Game {
         if (direction.equalsIgnoreCase("down")) {
             row++;
             if (row > 2) {
-                System.out.println("Stay on the map");
+                System.out.println("Believe it or not, you've reached the edge of the world");
                 row--;
             }
             if (row == 1 && col == 1) {
@@ -259,7 +261,7 @@ public class Game {
         if (direction.equalsIgnoreCase("right")) {
             col++;
             if (col > 1) {
-                System.out.println("Stay on the map");
+                System.out.println("Believe it or not, you've reached the edge of the world");
                 col--;
             }
             if (row == 1 && col == 1) {
@@ -293,7 +295,7 @@ public class Game {
         if (direction.equalsIgnoreCase("left")) {
             col--;
             if (col < 0) {
-                System.out.println("Stay on the map");
+                System.out.println("Believe it or not, you've reached the edge of the world");
                 col++;
             }
             if (row == 1 && col == 1) {
@@ -439,7 +441,7 @@ public class Game {
         }
     }
 
-    private void checkMyPokemon(@NotNull String checkBuddyStats) {
+    private void checkMyPokemon(String checkBuddyStats) {
         if (checkBuddyStats.equalsIgnoreCase("Buddy"))  {
             try {
                 System.out.println("Name: " + myPokemon.getName());
@@ -474,16 +476,5 @@ public class Game {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private void startBattle(Pokemon myPokemon, Pokemon pokemon){
-
-        boolean battle = true;
-        System.out.println("You've engaged in a battle!");
-
-        while (battle){
-
-        }
-
     }
 }

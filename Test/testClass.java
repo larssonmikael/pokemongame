@@ -24,6 +24,7 @@ public class testClass {
     public void testComparePokemonList() {
         assertSame(olle.pokemonList, mikael.pokemonList);
     }
+
     @Test
     public void testCompareTrainer() {
         boolean compare = olle.trainer;
