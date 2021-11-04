@@ -317,9 +317,9 @@ public class Game {
                 System.out.println("Accuracy:" + map[row][col].getPokemon().getAccuracy());
                 System.out.println("Type:" + map[row][col].getPokemon().getType());
                 System.out.println();
-                System.out.println("Move 1: " + map[row][col].getPokemon().move1.attackName);
-                System.out.println("Move 2: " + map[row][col].getPokemon().move2.attackName);
-                System.out.println("Move 3: " + map[row][col].getPokemon().move3.attackName);
+                System.out.println("Move 1: " + map[row][col].getPokemon().getMove1().attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon().getMove2().attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon().getMove3().attackName);
             } catch (NullPointerException e) {
                 System.out.println("You can only check out Pokémon at Prof. Oak's lab in the south-east part of the world. The professor has all the answers.");
             }
@@ -333,9 +333,9 @@ public class Game {
                 System.out.println("Accuracy:" + map[row][col].getPokemon2().getAccuracy());
                 System.out.println("Type:" + map[row][col].getPokemon2().getType());
                 System.out.println();
-                System.out.println("Move 1: " + map[row][col].getPokemon2().move1.attackName);
-                System.out.println("Move 2: " + map[row][col].getPokemon2().move2.attackName);
-                System.out.println("Move 3: " + map[row][col].getPokemon2().move3.attackName);
+                System.out.println("Move 1: " + map[row][col].getPokemon2().getMove1().attackName);
+                System.out.println("Move 2: " + map[row][col].getPokemon2().getMove2().attackName);
+                System.out.println("Move 3: " + map[row][col].getPokemon2().getMove3().attackName);
             }
             catch (NullPointerException e) {
                 System.out.println("You can only check out Pokémon at Prof. Oak's lab. The professor has all the answers");
