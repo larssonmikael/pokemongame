@@ -1,5 +1,6 @@
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.swing.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Locale;
@@ -17,8 +18,17 @@ public class Game {
     File runAway = new File("SFX/He_ran_away.wav");
     File petSound = new File("SFX/Pet_Sound.wav");
     File hey = new File("SFX/Hey.wav");
+    Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
+            "\n Each one of these Pokémon has its own unique moves stats. " +
+            "\n You can look at its individual stats by typing 'Check' followed by its name. " +
+            "\n Choose one by typing 'Choose' followed by its name!" +
+            "\n Choose with care. These creatures tend to stick to their owners.",
+            null, null, false);
+    Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalPokemon, null, true);
 
-//  Ititializating game
+
+
+    //  Ititializating game
     public void init() {
         Location palletTown = new Location("Pallet Town", "This is your hometown. You've lived here all your life. " +
                 "\nThere is a sign at the town centerpoint");
@@ -36,7 +46,7 @@ public class Game {
                 {routeOne, roadBlock},
                 {palletTown, oaksLab}};
         row = 2;
-        col = 0;
+        col = 1;
         trainer = false;
         myPokemon = null;
 
@@ -89,19 +99,12 @@ public class Game {
         palletTown.setSign(palletSign);
         viridianCity.setSign(viridianSign);
 
-        Humans rival = new Humans("Rival Douchebag","You got some nerve coming here. You're gonna get it now!", rivalPokemon, null, true);
         rivalsPlace.setHuman(rival);
 
-        Humans professorOak = new Humans("Professor Oak", "Ah, there you are! I've been awaiting you. I have a few Pokémon here." +
-                "\n Each one of these Pokémon has its own unique moves stats. " +
-                "\n You can look at its individual stats by typing 'Check' followed by its name. " +
-                "\n Choose one by typing 'Choose' followed by its name!" +
-                "\n Choose with care. These creatures tend to stick to their owners.",
-                 null, null, false);
 
-        oaksLab.setHuman(professorOak);
         String [] oakPokemonList = new String[] {bulbasaur.getName(), charmander.getName(), squirtle.getName(), growlithe.getName(), oddish.getName(), tentacool.getName()};
         professorOak.setPokemonList(oakPokemonList);
+        oaksLab.setHuman(professorOak);
 
         oaksLab.setPokemon(bulbasaur);
         oaksLab.setPokemon2(charmander);
@@ -421,21 +424,21 @@ public class Game {
 
     private void inTalk(String talkTo) {
         if (talkTo.equalsIgnoreCase("Oak")) {
-            try {
-                String oakSays = map[row][col].getHuman().getMessage();
-                System.out.println("\n -" + oakSays + "\n");
-                    System.out.println(Arrays.deepToString(map[row][col].getHuman().getPokemonList()));
-            } catch (NullPointerException e) {
+            if (map[row][col].getHuman() == professorOak) {
+                    String oakSays = professorOak.message;
+                    System.out.println("\n -" + oakSays + "\n");
+                    System.out.println(Arrays.deepToString(professorOak.pokemonList));
+            } else {
                 System.out.println("\nHmm.. the professor must be somewhere else. Where could he be?");
             }
         }
         if (talkTo.equalsIgnoreCase("Rival")) {
-            try {
-                String rivalSays = map[row][col].getHuman().getMessage();
+            if (map[row][col].getHuman() == rival) {
+                String rivalSays = rival.message;
                 System.out.println("\n -" + rivalSays);
-            } catch (NullPointerException e) {
+            } else {
                 System.out.println("\nThe taunting voice of your rival has been so daunting over the years, it's almost as if you can hear it " +
-                        "in the air around you.. \nWhich is strange, since he's not even here. Am i losing it?");
+                            "in the air around you.. \nWhich is strange, since he's not even here. Am i losing it?");
             }
         }
         if (talkTo.equalsIgnoreCase("Myself")) {

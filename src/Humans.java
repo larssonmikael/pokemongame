@@ -39,5 +39,13 @@ public class Humans {
     public void setPokemonList(String[] pokemonList) {
         this.pokemonList = pokemonList;
     }
+
+    public boolean isTrainer() {
+        return trainer;
+    }
+
+    public void setTrainer(boolean trainer) {
+        this.trainer = trainer;
+    }
 }
 
