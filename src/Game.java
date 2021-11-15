@@ -1,6 +1,5 @@
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.swing.*;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Locale;
@@ -13,6 +12,7 @@ public class Game {
     Scanner input = new Scanner(System.in);
     boolean trainer;
     boolean chosenPokemon = false;
+    boolean battle;
     Pokemon myPokemon = null;
     Pokemon rivalPokemon = null;
     File runAway = new File("SFX/He_ran_away.wav");
@@ -186,6 +186,26 @@ public class Game {
                 running = false;
             }
         }
+    }
+
+    private void initializeBattle(){
+        System.out.println("You've engaged in a battle with " + map[row][col].getHuman().name);
+        System.out.println("\n" + map[row][col].getHuman().name + "sent out " + map[row][col].getHuman().pokemon);
+        System.out.println("\n" + "You sent out " + myPokemon);
+        if (myPokemon.speed <= map[row][col].getHuman().pokemon.speed) {
+
+        }
+
+
+        battle = true;
+
+        while (battle) {
+            System.out.println("What will " + myPokemon + " do?");
+
+
+        }
+
+
     }
 
     private String[] readInput() {
