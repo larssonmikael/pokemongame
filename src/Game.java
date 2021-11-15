@@ -3,10 +3,10 @@ import javax.sound.sampled.Clip;
 import java.io.File;
 import java.util.Arrays;
 import java.util.Locale;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Game {
+    boolean crit;
     int row;
     int col;
     Location[][] map;
@@ -16,8 +16,6 @@ public class Game {
     boolean battle;
     Pokemon myPokemon;
     Pokemon rivalPokemon;
-    Pokemon myPokemonInBattle;
-    Pokemon opponentPokemonInBattle;
     File runAway = new File("SFX/He_ran_away.wav");
     File petSound = new File("SFX/Pet_Sound.wav");
     File hey = new File("SFX/Hey.wav");
@@ -41,29 +39,10 @@ public class Game {
     Location roadBlock = new Location("Roadblock", null);
 
 
-    public int getRow() {
-        return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
-    }
-
-    public int getCol() {
-        return col;
-    }
-
-    public void setCol(int col) {
-        this.col = col;
-    }
-
     public Location[][] getMap() {
         return map;
     }
 
-    public void setMap(Location[][] map) {
-        this.map = map;
-    }
 
     //  Ititializating game
     public void init() {
@@ -220,30 +199,89 @@ public class Game {
         }
     }
 
-    private int criticalCheck() {
+    private void criticalCheck() {
+        crit = false;
         int upperInt = 10;
         int lowerInt = 1;
-        int criticalHit = 0;
         int criticalRange = (upperInt - lowerInt) + 1;
         int random = (int) (Math.random() * criticalRange) + lowerInt;
-        if (random == 1) {
-            myPokemon.attackPower = myPokemon.attackPower * 2;
+        if (random != 5) {
+            crit = true;
+            myPokemon.attackPower = myPokemon.attackPower + 10;
             System.out.println("Critical hit!");
         }
-        criticalHit = myPokemon.attackPower;
-        return criticalHit;
-
     }
-
+    private void criticalRestore() {
+        if (crit) {
+            myPokemon.attackPower = myPokemon.attackPower - 10;
+            crit = false;
+        }
+    }
+    private void notVeryEffective() {
+        myPokemon.attackPower = myPokemon.attackPower - 10;
+        System.out.println("It's not very effective..");
+    }
+    private void superEffective() {
+        myPokemon.attackPower = myPokemon.attackPower + 10;
+    }
+    private void typeBoostCheck() {
+        if (myPokemon.move1.type.equals("Grass") && (rivalPokemon.type.equals("Grass"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move2.type.equals("Grass") && (rivalPokemon.type.equals("Grass"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move3.type.equals("Grass") && (rivalPokemon.type.equals("Grass"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move1.type.equals("Water") && (rivalPokemon.type.equals("Water"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move2.type.equals("Water") && (rivalPokemon.type.equals("Water"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move3.type.equals("Water") && (rivalPokemon.type.equals("Water"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move1.type.equals("Fire") && (rivalPokemon.type.equals("Fire"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move2.type.equals("Fire") && (rivalPokemon.type.equals("Fire"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move3.type.equals("Fire") && (rivalPokemon.type.equals("Fire"))) {
+            notVeryEffective();
+        }
+        if (myPokemon.move1.type.equals("Grass") && (rivalPokemon.type.equals("Water"))) {
+            superEffective();
+        }
+        if (myPokemon.move2.type.equals("Grass") && (rivalPokemon.type.equals("Water"))) {
+            superEffective();
+        }
+        if (myPokemon.move3.type.equals("Grass") && (rivalPokemon.type.equals("Water"))) {
+            superEffective();
+        }
+        if (myPokemon.move1.type.equals("Water") && (rivalPokemon.type.equals("Fire"))) {
+            superEffective();
+        }
+        if (myPokemon.move2.type.equals("Water") && (rivalPokemon.type.equals("Fire"))) {
+            superEffective();
+        }
+        if (myPokemon.move3.type.equals("Water") && (rivalPokemon.type.equals("Fire"))) {
+            superEffective();
+        }
+        if (myPokemon.move1.type.equals("Fire") && (rivalPokemon.type.equals("Grass"))) {
+            superEffective();
+        }
+        if (myPokemon.move2.type.equals("Fire") && (rivalPokemon.type.equals("Grass"))) {
+            superEffective();
+        }
+        if (myPokemon.move3.type.equals("Fire") && (rivalPokemon.type.equals("Grass"))) {
+            superEffective();
+        }
+    }
     private void initializeBattle() {
         getMap();
-//        myPokemon = myPokemonInBattle;
-//        rivalPokemon = opponentPokemonInBattle;
-
-
-        boolean superEffective;
-        boolean notVeryEffective;
-        String attack;
 
 
         System.out.println("You've engaged in a battle with " + map[row][col].getHuman().name);
@@ -273,19 +311,19 @@ public class Game {
 
         }
     }
-
-
     private void checkWinner() {
         if (rivalPokemon.baseHP <= 0) {
             System.out.println("You defeated " + rival.name);
+            rival.trainer = false;
             battle = false;
         }
         if (myPokemon.baseHP <= 0) {
             System.out.println("You lost to " + rival.name);
             battle = false;
+            row = 0;
+            col = 0;
         }
     }
-
 
 //    Type what attack to use
 
@@ -302,10 +340,12 @@ public class Game {
                 myPokemon.attackPower = myPokemon.attackPower + myPokemon.move1.attackBoost;
                 System.out.println(myPokemon.name + "'s attack power was increased!");
             } else if (myPokemon.move1.damage != 0) {
+                int damage = myPokemon.attackPower + myPokemon.move1.damage - 15;
+                typeBoostCheck();
                 criticalCheck();
-                int damage = myPokemon.attackPower + myPokemon.move1.damage;
                 rivalPokemon.baseHP = rivalPokemon.baseHP - damage;
                 System.out.println("It did " + damage + " damage");
+                criticalRestore();
             }
         }
 
@@ -319,10 +359,12 @@ public class Game {
                 myPokemon.attackPower = myPokemon.attackPower + myPokemon.move2.attackBoost;
                 System.out.println(myPokemon.name + "'s attack power was increased!");
             } else if (myPokemon.move2.damage != 0) {
-                criticalCheck();
                 int damage = myPokemon.attackPower + myPokemon.move2.damage;
+                typeBoostCheck();
+                criticalCheck();
                 rivalPokemon.baseHP = rivalPokemon.baseHP - damage;
                 System.out.println("It did " + damage + " damage");
+                criticalRestore();
             }
         }
         if (attack.equalsIgnoreCase(myPokemon.move3.attackName)) {
@@ -335,10 +377,12 @@ public class Game {
                 myPokemon.attackPower = myPokemon.attackPower + myPokemon.move3.attackBoost;
                 System.out.println(myPokemon.name + "'s attack power was increased!");
             } else if (myPokemon.move3.damage != 0) {
-                criticalCheck();
                 int damage = myPokemon.attackPower + myPokemon.move3.damage;
+                typeBoostCheck();
+                criticalCheck();
                 rivalPokemon.baseHP = rivalPokemon.baseHP - damage;
                 System.out.println("It did " + damage + " damage");
+                criticalRestore();
             }
         }
     }
@@ -434,19 +478,25 @@ public class Game {
                     System.out.println("Someone's voice: HEY!! \nDon't go in there without a Pokémon! That dude's a looney!");
                 }
                 if (row == 0 && col == 1 && trainer) {
-                    System.out.println("-" + rivalsPlace.getHuman().message);
-                    System.out.println("\nYou've encountered " + rivalsPlace.getHuman().name + "\nTheir Pokémon is " + rivalPokemon.name +
-                            "\nYour " + myPokemon.name + " seems eager to battle" + "\nBattle or Run?");
-                    switch (input.nextLine().toLowerCase(Locale.ROOT)) {
-                        case "battle" -> initializeBattle();
-                        case "run" -> {
-                            playSfx(runAway);
-                            System.out.println("\nYou ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
-                            row = 2;
-                            col = 0;
+                    if (rivalsPlace.getHuman().isTrainer()) {
+                        System.out.println("-" + rivalsPlace.getHuman().message);
+                        System.out.println("\nYou've encountered " + rivalsPlace.getHuman().name + "\nTheir Pokémon is " + rivalPokemon.name +
+                                "\nYour " + myPokemon.name + " seems eager to battle" + "\nBattle or Run?");
+                        switch (input.nextLine().toLowerCase(Locale.ROOT)) {
+                            case "battle" -> initializeBattle();
+                            case "run" -> {
+                                playSfx(runAway);
+                                System.out.println("\nYou ran home in tears. Unsettled by your unstable mental state, " + myPokemon.name + " ran after you and consoled you.");
+                                row = 2;
+                                col = 0;
+                            }
                         }
-                    }
+                    } else System.out.println("You've successfully obliterated your rival. You feel reborn, freed from the torment that has haunted " +
+                            "you for so long. \nHowever.. \nYou don't feel quite as liberated as you imagined you would.. " +
+                            "\nMaybe there are greater things ahead..");
+                    col --;
                 }
+
             }
             if (direction.equalsIgnoreCase("left")) {
                 col--;
