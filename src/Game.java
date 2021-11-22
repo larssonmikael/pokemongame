@@ -53,7 +53,7 @@ public class Game {
                 {routeOne, roadBlock},
                 {palletTown, oaksLab}};
         row = 2;
-        col = 1;
+        col = 0;
 
 
         trainer = false;
@@ -316,6 +316,8 @@ public class Game {
             System.out.println("You defeated " + rival.name);
             rival.trainer = false;
             battle = false;
+            row = 0;
+            col = 0;
         }
         if (myPokemon.baseHP <= 0) {
             System.out.println("You lost to " + rival.name);
